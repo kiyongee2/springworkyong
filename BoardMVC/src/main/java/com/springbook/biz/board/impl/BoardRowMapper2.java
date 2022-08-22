@@ -1,0 +1,18 @@
+package com.springbook.biz.board.impl;
+
+import java.sql.ResultSet;
+
+import com.springbook.biz.board.BoardVO;
+
+public class BoardRowMapper2 {
+	public BoardVO mapRow(ResultSet rs, int rowNum) throws Exception {
+		BoardVO board = new BoardVO();
+		board.setSeq(rs.getInt("seq"));
+		board.setTitle(rs.getString("title"));
+		board.setWriter(rs.getString("writer"));
+		board.setContent(rs.getString("content"));
+		board.setRegdate(rs.getDate("regdate"));
+		board.setCnt(rs.getInt("cnt"));
+		return board;
+	}
+}
