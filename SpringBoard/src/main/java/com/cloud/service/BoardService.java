@@ -6,14 +6,16 @@ import com.cloud.repository.BoardVO;
 
 public interface BoardService {
 	
-	void insert(BoardVO vo);
+	public void insert(BoardVO vo);   //글 쓰기
 	
-	List<BoardVO> getBoardList();
+	public List<BoardVO> getBoardList(); //글 목록
 	
-	BoardVO getBoard(int bno);
+	public BoardVO getBoard(int bno); //글 상세보기
 	
-	void delete(BoardVO vo);
+	public void delete(BoardVO vo); //글 삭제
+	 
+	public void update(BoardVO vo); //글 수정
 	
-	void update(BoardVO vo);
+	public void updateCount(int bno); //조회수
 	
 }

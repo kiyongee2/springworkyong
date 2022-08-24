@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cloud.persistence.JDBCUtil;
 
-
 @Repository
 public class BoardDAO {
 	
@@ -19,6 +18,7 @@ public class BoardDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
+	//SQL 쿼리 상수 선언
 	private final String BOARD_INSERT =
 			"INSERT INTO board(bno, title, writer, content) VALUES "
 			+ "(seq.NEXTVAL, ?, ?, ?)";
@@ -100,6 +100,32 @@ public class BoardDAO {
 		return board;
 	}
 	
+	//조회수
+	public void updateCount(int bno) {
+		try {
+			conn= JDBCUtil.getConnention();
+			String sql = "SELECT cnt FROM board WHERE bno=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			rs = pstmt.executeQuery();
+			int cnt = 0;
+			if(rs.next()) {
+				cnt = rs.getInt("cnt") + 1;
+			}
+			
+			//조회수 update 쿼리
+			sql = "UPDATE board SET cnt = ? WHERE bno=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cnt);
+			pstmt.setInt(2, bno);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, pstmt, rs);
+		}
+	}
+	
 	//글 수정하기
 	public void updateBoard(BoardVO vo) {
 		System.out.println("==> updateBoard()");
@@ -129,6 +155,8 @@ public class BoardDAO {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, pstmt);
 		}
 	}
 }
