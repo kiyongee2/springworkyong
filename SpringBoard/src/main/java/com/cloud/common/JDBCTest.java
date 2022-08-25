@@ -1,4 +1,4 @@
-package com.cloud.persistence;
+package com.cloud.common;
 
 import java.sql.Connection;
 

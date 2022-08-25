@@ -8,11 +8,11 @@
 	<context:component-scan base-package="com.spring"></context:component-scan>
 	
 	<!-- Setter 인젝션 -->
-	<bean id="userService" class="com.spring.user.impl.UserServiceImpl">
+	<!-- <bean id="userService" class="com.spring.user.impl.UserServiceImpl">
 		<property name="userDAO" ref="userDAO" />
-	</bean>
+	</bean> -->
 	<!-- name의 userDAO는 setUserDAO()와 같음 -->
 	
-	<bean id="userDAO" class="com.spring.user.impl.UserDAO" />
+	<!-- <bean id="userDAO" class="com.spring.user.impl.UserDAO" /> -->
 
 </beans>

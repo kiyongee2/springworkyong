@@ -14,8 +14,8 @@ public class UserServiceClient {
 		
 		//3. 로그인 기능 테스트
 		UserVO vo = new UserVO();
-		vo.setId("test");
-		vo.setPasswd("test123");
+		vo.setId("cloud");
+		vo.setPasswd("cloud");
 		
 		boolean result = userService.login(vo);
 		if(result) {

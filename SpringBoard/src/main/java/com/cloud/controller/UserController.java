@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,13 +24,15 @@ public class UserController{
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(UserVO vo, HttpSession session) { //로그인 처리 요청
+	public String login(UserVO vo, HttpSession session, Model model) { //로그인 처리 요청
 		boolean result = service.login(vo);
-
-		if(result) {
+		System.out.println(result);
+		if(result==true) {
 			session.setAttribute("sessionId", vo.getId()); //세션 발급
 			return "redirect:boardList";
 		}else {
+			int error = 1;
+			model.addAttribute("error", error);
 			return "login";
 		}
 	}

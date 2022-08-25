@@ -6,13 +6,39 @@
 <meta charset="UTF-8">
 <title>글 등록</title>
 <link rel="stylesheet" href="/resources/css/style.css">
+<script type="text/javascript">
+
+	function checkForm(){
+		let form = document.newWrite;
+		
+		if(!form.title.value){
+			alert("제목을 입력해 주세요")
+			form.title.focus();
+			return false;
+		}
+		
+		if(!form.writer.value){
+			alert("작성자를 입력해 주세요")
+			form.writer.focus();
+			return false;
+		}
+		
+		if(!form.content.value){
+			alert("내용을 입력해 주세요")
+			form.content.focus();
+			return false;
+		}
+	}
+	
+</script>
 </head>
 <body>
 	<div id="container">
 		<section id="register">
 			<h2>글 등록</h2>
 			<hr>
-			<form action="/insertBoard" method="post">
+			<form action="/insertBoard" method="post" 
+			      onsubmit="return checkForm()" name="newWrite">
 				<table class="tbl_reg">
 					<tr>
 						<td width="100">제목</td>

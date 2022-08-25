@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.cloud.persistence.JDBCUtil;
+import com.cloud.common.JDBCUtil;
 
 @Repository
 public class BoardDAO {
