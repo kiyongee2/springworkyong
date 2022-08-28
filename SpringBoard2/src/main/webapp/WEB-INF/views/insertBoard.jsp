@@ -7,7 +7,6 @@
 <title>글 등록</title>
 <link rel="stylesheet" href="/resources/css/style.css">
 <script type="text/javascript">
-
 	function checkForm(){
 		let form = document.newWrite;
 		
@@ -29,20 +28,18 @@
 			return false;
 		}
 	}
-	
 </script>
 </head>
 <body>
 	<div id="container">
 		<section id="register">
-			<h2>글 등록</h2>
-			<hr>
+			<h2>글쓰기</h2>
 			<form action="/insertBoard" method="post" 
 			      onsubmit="return checkForm()" name="newWrite">
 				<table class="tbl_reg">
 					<tr>
 						<td width="100">제목</td>
-						<td align="left"><input type="text" name="title" size="50"></td>
+						<td align="left"><input type="text" name="title" placeholder="title"></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -50,7 +47,8 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><textarea name="content" cols="50" rows="10"></textarea></td>
+						<td><textarea name="content" cols="50" rows="10" 
+						              placeholder="content"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">

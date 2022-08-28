@@ -32,6 +32,7 @@ hr{margin-top: 20px;}
 .tbl_view textarea{width: 460px;}
 .tbl_view input[type="submit"], input[type="reset"], 
     input[type="button"]{width: 60px; height:30px;}
+.tbl_view .time{text-align: left;}
     
 /* login 스타일 */
 .tbl_login{margin: 20px auto; width: 320px;}

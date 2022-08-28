@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,8 @@
 	<div id="container">
 		<section id="list">
 			<h2>글 상세 보기</h2>
-			<h3>
-				<a href="/logout">Log-out</a>
-			</h3>
-			<hr>
 			<form action="/updateBoard" method="post">
+			<!-- 수정 시엔 기본키인 bno를 반드시 명시해 줌 -->
 			<input type="hidden" name="bno" value="${board.bno}">
 				<table class="tbl_view">
 					<tr>
@@ -33,7 +31,9 @@
 					</tr>
 					<tr>
 						<td>등록일</td>
-						<td><input type="text" name="regDate" value="${board.regDate}"></td>
+						<td class="time">
+							<fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd hh:mm:ss"/>
+						</td>
 					</tr>
 					<tr>
 						<td>조회수</td>
