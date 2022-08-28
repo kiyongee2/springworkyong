@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- CustomAccessDeniedHandler를 빈으로 등록 -->
+	<bean id="customAccessDenied" class="com.spring.security.CustomAccessDeniedHandler" />
+	<bean id="customLoginSuccess" class="com.spring.security.CustomLoginSuccessHandler" />
+	<!-- 암호화 하지 않은 패스워드 -->
+	<!-- <bean id="customPasswordEncoder" class="com.spring.security.CustomNoOpPasswordEncoder" /> -->
+	<!-- 암호화 한 패스워드 -->
+	<bean id="bcryptPasswordEncoder"
+		  class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserDetailsService" 
+	      class="com.spring.security.CustomUserDetailsService" />
+	
+	<!-- DataSource 설정 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="c##spring" />
+		<property name="password" value="spring" />       
+	</bean>
+	
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+	      destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<mybatis-spring:scan base-package="com.spring"/>
+	
+	<!-- 기본 서비스 -->
+	<security:http>
+		<security:intercept-url pattern="/sample/all" access="permitAll" />
+		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" />
+		
+		<!-- <security:form-login/> -->
+		<!-- 로그인 페이지 직접 제작 -->
+		<security:form-login login-page="/customLogin" 
+		                     authentication-success-handler-ref="customLoginSuccess" />
+		                     
+		<security:logout logout-url="/customLogout" invalidate-session="true" />
+		
+		<!-- 에러 처리 -->
+		<!-- <security:access-denied-handler error-page="/accessError" /> -->
+		<security:access-denied-handler ref="customAccessDenied" />
+	</security:http>
+	
+	<!-- 인증 및 권한 설정 -->
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<!-- jdbc 연동 -->
+			<!-- <security:jdbc-user-service data-source-ref="dataSource" /> -->
+			
+			<!-- 패스워드 암호화 쿼리 사용 -->
+			<!-- <security:jdbc-user-service 
+				data-source-ref="dataSource" 
+				users-by-username-query="select userid, userpw, enabled from
+							tbl_member where userid=?"
+				authorities-by-username-query="select userid, auth from
+							tbl_member_auth where userid=?"	/> -->
+			
+			<!-- <security:password-encoder ref="customPasswordEncoder" /> -->
+			<!-- 암호화 -->
+			<security:password-encoder ref="bcryptPasswordEncoder" />
+			
+			<!-- <security:user-service>
+				<security:user name="member" password="{noop}member" 
+				               authorities="ROLE_MEMBER"/>
+				<security:user name="admin" password="{noop}admin" 
+							   authorities="ROLE_MEMBER, ROLE_ADMIN"/>
+			</security:user-service> -->
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

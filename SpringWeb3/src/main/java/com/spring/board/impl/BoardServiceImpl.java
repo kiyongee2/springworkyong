@@ -10,7 +10,7 @@ import com.spring.board.BoardVO;
 import com.spring.common.Log4jAdvice;
 import com.spring.common.LogAdvice;
 
-@Service("boardService")
+//@Service("boardService")
 public class BoardServiceImpl implements BoardService{
 
 	@Autowired

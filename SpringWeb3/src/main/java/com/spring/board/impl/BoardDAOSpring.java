@@ -11,30 +11,30 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.board.BoardVO;
 
-//@Repository
+@Repository
 public class BoardDAOSpring {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	/*private final String BOARD_INSERT =
-			"INSERT INTO board(bno, title, writer, content) VALUES "
-			+ "(bno.NEXTVAL, ?, ?, ?)";*/
-	//트랜잭션 테스트 용
 	private final String BOARD_INSERT =
 			"INSERT INTO board(bno, title, writer, content) VALUES "
-					+ "(?, ?, ?, ?)";
+			+ "(bno.NEXTVAL, ?, ?, ?)";
+	//트랜잭션 테스트 용
+	/*private final String BOARD_INSERT =
+			"INSERT INTO board(bno, title, writer, content) VALUES "
+					+ "(?, ?, ?, ?)";*/
 	private final String BOARD_LIST =
 			"SELECT * FROM board ORDER BY bno DESC";
 	
 	//글 등록
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> Spring JDBC로 insertBoard() 기능 처리");
-		/*jdbcTemplate.update(BOARD_INSERT, vo.getTitle(), vo.getWriter(), 
-				vo.getContent());*/
-		//트랜잭션 테스트용 
-		jdbcTemplate.update(BOARD_INSERT, vo.getBno(), vo.getTitle(), vo.getWriter(), 
+		jdbcTemplate.update(BOARD_INSERT, vo.getTitle(), vo.getWriter(), 
 				vo.getContent());
+		//트랜잭션 테스트용 
+		/*jdbcTemplate.update(BOARD_INSERT, vo.getBno(), vo.getTitle(), vo.getWriter(), 
+				vo.getContent());*/
 	}
 	
 	//글 목록

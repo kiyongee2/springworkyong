@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring.mapper.TimeMapper">
+	<select id="getTime2" resultType="String">
+		SELECT sysdate FROM dual
+	</select>
+  <!-- id는 getTime2()와 같음. 반환자료형(resultType) -->
+</mapper>
+

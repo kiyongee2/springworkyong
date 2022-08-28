@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <modules>
-  <module moduleId="org.eclipse.jst.jee.server:BoardMVC" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:BoardSpringMVC" serverId="Tomcat v8.5 Server at localhost"/>
-  <module moduleId="org.eclipse.jst.jee.server:BoardSpringMVC2" serverId="Tomcat v9.0 Server at localhost"/>
-  <module moduleId="org.eclipse.jst.jee.server:SpringWeb2" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:BoardSpringAn" serverId="Tomcat v8.5 Server at localhost"/>
-  <module moduleId="org.eclipse.jst.jee.server:LombokTest" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:ex00" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:BoardWeb2" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:jweb01" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:BoardWeb3" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:BoardWeb" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:BoardMVC" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:codeweb" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:codeweb2" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:BoardSpringMVC2" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:SpringWeb2" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:LombokTest" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:SpringWeb" serverId="Tomcat v8.5 Server at localhost"/>
 </modules>

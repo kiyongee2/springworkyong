@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.common.JDBCUtil;
 import com.spring.user.UserVO;
 
-//@Repository
+@Repository
 public class UserDAO {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;

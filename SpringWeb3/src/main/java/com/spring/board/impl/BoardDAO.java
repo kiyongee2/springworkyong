@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.board.BoardVO;
 import com.spring.common.JDBCUtil;
 
-@Repository
+//@Repository
 public class BoardDAO {
 	
 	private Connection conn = null;
