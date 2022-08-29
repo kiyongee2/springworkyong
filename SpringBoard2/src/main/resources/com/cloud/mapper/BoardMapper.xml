@@ -6,35 +6,35 @@
 <mapper namespace="com.cloud.mapper.BoardMapper">
 	<!-- 목록 보기  -->
 	<select id="getBoardList" resultType="com.cloud.domain.BoardVO">
-		SELECT * FROM board ORDER BY bno DESC
+		SELECT * FROM tbl_board ORDER BY bno DESC
 	</select>
 	
 	<!-- 글쓰기 -->
 	<insert id="insert">
-		INSERT INTO board(bno, title, writer, content) 
+		INSERT INTO tbl_board(bno, title, writer, content) 
 		VALUES (seq.nextval, #{title}, #{writer}, #{content})
 	</insert>
 	
 	<!-- 글 상세 보기 -->
 	<select id="getBoard" resultType="com.cloud.domain.BoardVO">
-		SELECT * FROM board WHERE bno = #{bno}
+		SELECT * FROM tbl_board WHERE bno = #{bno}
 	</select>
 	
 	<!-- 글 삭제 -->
 	<delete id="delete">
-		DELETE FROM board WHERE bno = #{bno}
+		DELETE FROM tbl_board WHERE bno = #{bno}
 	</delete>
 	
 	<!-- 글 수정 -->
 	<update id="update">
-		UPDATE board
+		UPDATE tbl_board
 		SET title = #{title}, content = #{content}
 		WHERE bno = #{bno}
 	</update>
 	
 	<!-- 조회수 -->
 	<update id="updateCount" parameterType="int">
-		UPDATE board
+		UPDATE tbl_board
 		SET cnt = cnt + 1
 		WHERE bno = #{bno}
 	</update>

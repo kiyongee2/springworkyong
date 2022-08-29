@@ -5,11 +5,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- CustomAccessDeniedHandler를 빈으로 등록 -->
+	<!-- Security 인터페이스 빈으로 등록 -->
 	<bean id="customAccessDenied" class="com.spring.security.CustomAccessDeniedHandler" />
 	<bean id="customLoginSuccess" class="com.spring.security.CustomLoginSuccessHandler" />
 	<!-- 암호화 하지 않은 패스워드 -->
-	<!-- <bean id="customPasswordEncoder" class="com.spring.security.CustomNoOpPasswordEncoder" /> -->
+	<bean id="customPasswordEncoder" class="com.spring.security.CustomNoOpPasswordEncoder" />
 	<!-- 암호화 한 패스워드 -->
 	<bean id="bcryptPasswordEncoder"
 		  class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />

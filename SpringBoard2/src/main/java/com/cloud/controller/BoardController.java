@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,11 +31,14 @@ public class BoardController {
 	}
 	
 	@GetMapping("/insertBoard")
+	//@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String insertBoard() {  //글쓰기 폼 페이지 요청
 		return "insertBoard";
 	}
 	
 	@PostMapping("/insertBoard")
+	@PreAuthorize("isAuthenticated()")
 	public String insertBoard(BoardVO vo){  //글쓰기 처리
 		service.insert(vo);
 		return "redirect:boardList";

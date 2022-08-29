@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="SpringWeb2"/>
 <aop-project name="SpringDI"/>
+<aop-project name="SpringWeb2"/>
 <aop-project name="SpringSecurity"/>
+<aop-project name="SpringBoard3"/>
 <aop-project name="SpringAOP"/>
 <aop-project name="LombokTest"/>
 <aop-project name="SpringBoard"/>

@@ -10,8 +10,8 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="c##jweb" />
-		<property name="password" value="54321" />       
+		<property name="username" value="c##spring" />
+		<property name="password" value="spring" />       
 	</bean>
 	<!-- 생성자 주입(DI) -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
