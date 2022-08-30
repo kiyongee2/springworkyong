@@ -19,5 +19,4 @@ public class MemberVO implements Serializable{
 	private Date regDate;
 	private Date updateDate;
 	private List<AuthVO> authList;
-
 }

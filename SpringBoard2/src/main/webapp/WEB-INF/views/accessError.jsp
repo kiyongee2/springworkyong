@@ -5,11 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>access error</title>
+<link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
-	<h1>Access Denied Page</h1>
-	
-	<h2><c:out value="${msg}" /> </h2>
+	<div id="container">
+		<section id="login">
+			<h1>Access Denied Page</h1>
+			
+			<h2><c:out value="${msg}" /> </h2>
+		</section>
+	</div>
 </body>
 </html>

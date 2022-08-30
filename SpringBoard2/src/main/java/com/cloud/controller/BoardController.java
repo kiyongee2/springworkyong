@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cloud.domain.BoardVO;
 import com.cloud.service.BoardService;
 
+@RequestMapping("/board/*")
 @Controller
 public class BoardController {
 	
@@ -27,21 +28,20 @@ public class BoardController {
 		
 		model.addAttribute("boardList", boardList); //model-"boardList"
 		model.addAttribute("id", id);
-		return "boardList";
+		return "/board/boardList";
 	}
 	
 	@GetMapping("/insertBoard")
-	//@PreAuthorize("isAuthenticated()")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("isAuthenticated()")
 	public String insertBoard() {  //글쓰기 폼 페이지 요청
-		return "insertBoard";
+		return "/board/insertBoard";
 	}
 	
 	@PostMapping("/insertBoard")
 	@PreAuthorize("isAuthenticated()")
 	public String insertBoard(BoardVO vo){  //글쓰기 처리
 		service.insert(vo);
-		return "redirect:boardList";
+		return "redirect:/board/boardList";
 	}
 	
 	@RequestMapping("/boardView")
@@ -49,18 +49,18 @@ public class BoardController {
 		service.updateCount(bno);  //조회수 증가
 		BoardVO board = service.getBoard(bno);  //상세 보기 처리
 		model.addAttribute("board", board); //model-"board"
-		return "boardView";
+		return "/board/boardView";
 	}
 	
-	@GetMapping("/deleteBoard")
+	@GetMapping("/board/deleteBoard")
 	public String deleteBoard(BoardVO vo) {  //글 삭제 요청
 		service.delete(vo);
-		return "redirect:boardList";
+		return "redirect:/board/boardList";
 	}
 	
-	@PostMapping("/updateBoard")
+	@PostMapping("/board/updateBoard")
 	public String updateBoard(BoardVO vo) {  //글 수정 요청
 		service.update(vo);
-		return "redirect:boardList";
+		return "redirect:/board/boardList";
 	}
 }

@@ -38,5 +38,5 @@ hr{margin-top: 20px;}
 .tbl_login{margin: 20px auto; width: 320px;}
 .tbl_login, th, td{border: 1px solid #ccc; border-collapse:collapse; padding: 10px;}
 .tbl_login input{width: 200px; height: 30px; border: 1px solid #aaa; border-radius: 3px;}
-.tbl_login button{padding: 5px 10px}
+.tbl_login input[type="submit"], input[type="reset"]{width: 60px; height:30px;}
 #login .error{color: red;}

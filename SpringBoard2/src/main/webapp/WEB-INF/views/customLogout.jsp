@@ -9,14 +9,18 @@
 <title>일반 로그인</title>
 </head>
 <body>
-	<h1>Logout Page</h1>
-	
-	<h2><c:out value="${error}" /></h2>
-	<h2><c:out value="${logout}" /> </h2>
-	
-	<form action="/customLogout" method="post" >
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<button type="submit">로그아웃</button>
-	</form>
+	<div id="container">
+		<section id="login">
+			<h1>Logout Page</h1>
+			
+			<h2><c:out value="${error}" /></h2>
+			<h2><c:out value="${logout}" /> </h2>
+			
+			<form action="/customLogout" method="post" >
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<button type="submit">로그아웃</button>
+			</form>
+		</section>
+	</div>
 </body>
 </html>

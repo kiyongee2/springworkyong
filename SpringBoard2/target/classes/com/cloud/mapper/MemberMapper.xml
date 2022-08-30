@@ -11,8 +11,7 @@
 	    <result property="userName" column="username"/>
 	    <result property="regDate" column="regdate"/>
 	    <result property="updateDate" column="updatedate"/>
-	    <collection property="authList" resultMap="authMap">
-	    </collection> 
+	    <collection property="authList" resultMap="authMap" />
 	</resultMap>
   
 	<resultMap type="com.cloud.domain.AuthVO" id="authMap">
@@ -21,11 +20,16 @@
 	</resultMap>
 	  
 	<select id="read" resultMap="memberMap">
-		SELECT 
-	  	mem.userid,  userpw, username, enabled, regdate, updatedate, auth
-		FROM 
-	  	tbl_member mem LEFT OUTER JOIN tbl_member_auth auth on mem.userid = auth.userid 
+		SELECT mem.userid,  userpw, username, enabled, regdate, updatedate, auth
+		FROM tbl_member mem 
+			LEFT OUTER JOIN tbl_member_auth auth 
+			on mem.userid = auth.userid 
 		WHERE mem.userid = #{userid} 
-</select>
+	</select>
+	
+	<select id="getMemberList" resultMap="memberMap">
+		SELECT * FROM tbl_member
+	</select>
 
 </mapper>
+

@@ -8,22 +8,6 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="/resources/css/style.css">
-<!-- <script>
-	function checkForm(){
-		let form = document.login
-		
-		if(form.id.value == ""){
-			alert("아이디를 입력해주세요");
-			form.id.focus();
-			return false;
-		}
-		if(form.passwd.value == ""){
-			alert("비밀번호를 입력해주세요");
-			form.passwd.focus();
-			return false;
-		}
-	}
-</script> -->
 </head>
 <body>
 	<div id="container">

@@ -14,8 +14,10 @@
 			<hr>
 			<img src="/resources/images/activity.jpg" alt="행글라이더">
 			<h4>
-			   <a href="/login">로그인 바로가기</a>&nbsp; &nbsp;&nbsp;
-			   <a href="/boardList">글 목록 바로가기</a>
+			   <a href="/customLogin">로그인 바로가기</a>&nbsp; &nbsp;&nbsp;
+			   <a href="/member/memberList">회원 목록</a>&nbsp; &nbsp;&nbsp;
+			   <a href="/board/boardList">게시판</a>
+			   <a href="/member/insertMember">회원가입</a>
 			</h4>
 		</section>
 	</div>
