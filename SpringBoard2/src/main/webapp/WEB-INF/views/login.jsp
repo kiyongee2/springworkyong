@@ -16,15 +16,15 @@
 			<c:if test="${error==1}">
 				<p class="error"><c:out value="아이디나 비밀번호를 확인해주세요." /></p>
 			</c:if>
-			<form action="/login" method="post">
+			<form action="/customLogin" method="post">
 				<table class="tbl_login">
 					<tr>
 						<td>아이디</td>
-						<td><input type="text" name="id" required="required"></td>
+						<td><input type="text" name="userid" required="required"></td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="password" name="passwd" required="required"></td>
+						<td><input type="password" name="userpw" required="required"></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -32,6 +32,7 @@
 					</tr>
 				</table>
 			</form>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</section>
 	</div>
 </body>

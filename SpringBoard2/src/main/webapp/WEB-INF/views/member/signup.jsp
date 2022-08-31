@@ -16,40 +16,32 @@
 			<h1>회원 가입</h1>
 		</div>
 		<div>
-			<form action="/member/insertMember" method="post" name="regForm">
-			<table class="tbl">
+			<form action="/member/signup" method="post" name="regForm">
+			<table class="tbl_reg">
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="memberId" placeholder="ID"></td>
+					<td><input type="text" name="userid" placeholder="ID"></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="passwd" placeholder="PASSWORD"></td>
+					<td><input type="password" name="userpw" placeholder="PASSWORD"></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
-					<td><input type="password" name="passwd_confirm" placeholder="PASSWORD_CONFIRM"></td>
+					<td><input type="password" name="userpw" placeholder="PASSWORD_CONFIRM"></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="name"></td>
-				</tr>
-				<tr>
-					<td>성별</td>
-					<td>
-						<select name="gender">
-							<option selected>남</option>
-							<option>여</option>
-						</select>
-					</td>
+					<td><input type="text" name="username"></td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="등록" onclick="checkMember()">
+						<input type="submit" value="등록">
 						<input type="reset" value="취소">
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 		</div>
 	</div>

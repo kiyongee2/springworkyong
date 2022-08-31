@@ -13,7 +13,7 @@ public class MemberVO implements Serializable{
 	
 	private String userid;
 	private String userpw;
-	private String userName;
+	private String username;
 	private String enabled;
 	
 	private Date regDate;

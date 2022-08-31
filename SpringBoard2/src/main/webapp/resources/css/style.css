@@ -40,3 +40,9 @@ hr{margin-top: 20px;}
 .tbl_login input{width: 200px; height: 30px; border: 1px solid #aaa; border-radius: 3px;}
 .tbl_login input[type="submit"], input[type="reset"]{width: 60px; height:30px;}
 #login .error{color: red;}
+
+/* signup 스타일 */
+.tbl_reg{margin: 20px auto; width: 400px;}
+.tbl_reg, th, td{border: 1px solid #ccc; border-collapse:collapse; padding: 10px;}
+.tbl_reg input{width: 200px; height: 30px; border: 1px solid #aaa; border-radius: 3px;}
+.tbl_reg input[type="submit"], input[type="reset"]{width: 60px; height:30px;}

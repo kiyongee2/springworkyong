@@ -7,6 +7,8 @@ C:\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2604532876.i
 \ex06\src\main\java
 D:\webJava\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\833554335.index
 \SpringDI\src\main\java
+C:\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\548772262.index
+\SpringBoard2\src\main\java
 D:\webJava\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2486390998.index
 \BoardWeb3\src\main\java
 D:\webJava\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2959378536.index
@@ -21,6 +23,8 @@ C:\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3582047729.i
 \SpringBoard3\src\main\java
 C:\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2360663592.index
 \SpringBoard3\src\main\java
+C:\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\79270647.index
+\SpringBoard2\src\main\java
 D:\webJava\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\775529260.index
 \LombokTest\src\main\java
 C:\springwork\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\299335866.index

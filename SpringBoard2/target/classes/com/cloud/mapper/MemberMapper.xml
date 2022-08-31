@@ -8,7 +8,7 @@
 		<id property="userid" column="userid"/>
 	    <result property="userid" column="userid"/>
 	    <result property="userpw" column="userpw"/>
-	    <result property="userName" column="username"/>
+	    <result property="username" column="username"/>
 	    <result property="regDate" column="regdate"/>
 	    <result property="updateDate" column="updatedate"/>
 	    <collection property="authList" resultMap="authMap" />
@@ -30,6 +30,10 @@
 	<select id="getMemberList" resultMap="memberMap">
 		SELECT * FROM tbl_member
 	</select>
-
+	
+	<insert id="insertMember">
+		INSERT INTO tbl_member(userid, userpw, username, enabled)
+		VALUES (#{userid}, #{userpw}, #{username}, '1')
+	</insert>
 </mapper>
 
