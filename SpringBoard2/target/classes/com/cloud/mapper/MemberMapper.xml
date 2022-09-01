@@ -28,12 +28,26 @@
 	</select>
 	
 	<select id="getMemberList" resultMap="memberMap">
-		SELECT * FROM tbl_member
+		<!-- SELECT * FROM tbl_member ORDER BY regdate -->
+		SELECT mem.userid,  userpw, username, enabled, regdate, updatedate, auth
+		FROM tbl_member mem 
+			LEFT OUTER JOIN tbl_member_auth auth 
+			on mem.userid = auth.userid
 	</select>
 	
 	<insert id="insertMember">
 		INSERT INTO tbl_member(userid, userpw, username, enabled)
 		VALUES (#{userid}, #{userpw}, #{username}, '1')
 	</insert>
+	
+	<delete id="deleteMember">
+		DELETE FROM tbl_member WHERE userid = #{userid}
+	</delete>
+	
+	<update id="updateMember">
+		UPDATE tbl_member 
+		SET userpw = #{userpw}, username = #{username}
+		WHERE userid = #{userid}
+	</update>
 </mapper>
 

@@ -27,7 +27,7 @@
 		<!-- csrf 토큰 비활성화 -->
 		<security:csrf disabled="true"/>
 		
-		<security:logout logout-url="/customLogout" invalidate-session="true" />
+		<!-- <security:logout logout-url="/customLogout" invalidate-session="true" /> -->
 		
 		<security:access-denied-handler error-page="/accessError" />
 		<!-- 에러 처리 빈 참조 -->

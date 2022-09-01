@@ -1,7 +1,9 @@
 package com.cloud.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,44 @@ public class MemberController {
 	public String signUp(MemberVO member, RedirectAttributes rttr) {
 		service.signup(member);
 		//rttr.addFlashAttribute("result", member.getUserid());
-		return "redirect:/board/boardList";
+		return "redirect:/customLogin";
+	}
+	
+	//회원 목록 보기
+	@GetMapping("/memberList")
+	public String getMemberList(Model model) {
+		List<MemberVO> memberList = service.getMemberList();
+		model.addAttribute("memberList", memberList);
+		return "/member/memberList";
+	}
+	
+	//회원 상세 보기
+	@GetMapping("/memberView")
+	public String read(String userid, Model model) {
+		MemberVO member = service.read(userid);
+		model.addAttribute("member", member);
+		return "/member/memberView";
+	}
+	
+	//회원 삭제
+	@GetMapping("/delete")
+	public String delete(MemberVO member) {
+		service.delete(member);
+		return "redirect:/member/memberList";
+	}
+	
+	//회원 수정
+	@PostMapping("/update")
+	public String update(MemberVO member) {
+		service.update(member);
+		return "redirect:/member/memberList";
 	}
 }
+
+
+
+
+
+
+
+

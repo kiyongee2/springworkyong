@@ -11,9 +11,12 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 	<div id="container">
 		<section id="list">
-			<h2>글 상세 보기</h2>
+			<div class="title">
+				<h2>글 상세보기</h2>
+			</div>
 			<form action="/board/updateBoard" method="post">
 			<!-- 수정 시엔 기본키인 bno를 반드시 명시해 줌 -->
 			<input type="hidden" name="bno" value="${board.bno}">
@@ -58,5 +61,6 @@
 			</form>
 		</section>
 	</div>
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

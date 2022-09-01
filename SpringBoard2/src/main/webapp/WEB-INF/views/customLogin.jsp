@@ -9,9 +9,12 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
+	<jsp:include page="./menu.jsp" />
 	<div id="container">
 		<section id="login">
-			<h2>로그인</h2>
+			<div class="title">
+				<h2>로그인</h2>
+			</div>
 			<h3 class="error"><c:out value="${error}" /></h3>
 			<form action="/login" method="post">
 				<table class="tbl_login">
@@ -34,5 +37,6 @@
 			</form>
 		</section>
 	</div>
+	<jsp:include page="./footer.jsp" />
 </body>
 </html>

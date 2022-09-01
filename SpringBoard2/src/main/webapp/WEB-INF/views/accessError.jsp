@@ -11,8 +11,9 @@
 <body>
 	<div id="container">
 		<section id="login">
-			<h1>Access Denied Page</h1>
-			
+			<div class="title">
+				<h2>Access Denied Page</h2>
+			</div>
 			<h2><c:out value="${msg}" /> </h2>
 		</section>
 	</div>

@@ -26,9 +26,12 @@
 </script>
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 	<div id="container">
 		<section id="register">
-			<h2>글쓰기</h2>
+			<div class="title">
+				<h2>글쓰기</h2>
+			</div>
 			<form action="/board/insertBoard" method="post" 
 			      onsubmit="return checkForm()" name="newWrite">
 				<table class="tbl_reg">
@@ -58,5 +61,6 @@
 			</form>
 		</section>
 	</div>
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

@@ -30,7 +30,7 @@ public class CommonController {
 	
 	//로그인
 	@GetMapping("/customLogin")
-	public void login(String error, String logout, Model model) {
+	public void login(String error, String logout, Model model, HttpSession session) {
 		log.info("error: " + error);
 		log.info("logout:" + logout);
 		
@@ -45,8 +45,10 @@ public class CommonController {
 	
 	//로그아웃
 	@GetMapping("/customLogout")
-	public void logout() {
+	public String logout(HttpSession session) {
+		session.invalidate();
 		log.info("custom logout");
+		return "redirect:/";
 	}
 	
 	/*//회원 가입 폼 요청

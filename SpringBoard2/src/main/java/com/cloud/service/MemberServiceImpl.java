@@ -1,5 +1,7 @@
 package com.cloud.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,5 +36,25 @@ public class MemberServiceImpl implements MemberService{
 		auth.setUserid(member.getUserid());
 		auth.setAuth("ROLE_USER");
 		authMapper.insertMemberAuth(auth);
+	}
+
+	@Override
+	public List<MemberVO> getMemberList() {
+		return mapper.getMemberList();
+	}
+
+	@Override
+	public MemberVO read(String userid) {
+		return mapper.read(userid);
+	}
+
+	@Override
+	public void delete(MemberVO member) {
+		mapper.deleteMember(member);
+	}
+
+	@Override
+	public void update(MemberVO member) {
+		mapper.updateMember(member);
 	}
 }
