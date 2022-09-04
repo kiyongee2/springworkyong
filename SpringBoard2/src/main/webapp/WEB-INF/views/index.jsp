@@ -12,7 +12,7 @@
 	<div id="container">
 		<section id="main">
 			<div class="title">
-				<h2>메인 페이지입니다.</h2>
+				<h2>Welcome to our community...</h2>
 			</div>
 			
 			<div>

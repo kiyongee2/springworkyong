@@ -2,21 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록</title>
+<title>글 목록</title>
 <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 	<div id="container">
 		<section id="list">
-			<h2>글 목록</h2>
-			<h3>
-				<c:out value="${id}" />님 환영합니다... &nbsp;&nbsp;&nbsp;
-				 <a href="/logout" style="color:green">Logout</a>
-			</h3>
+			<div class="title">
+				<h2>게시글 목록</h2>
+			</div>
 			<table class="tbl_list">
 				<tr>
 					<th>번호</th>
@@ -40,5 +40,6 @@
 			</div>
 		</section>
 	</div>
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

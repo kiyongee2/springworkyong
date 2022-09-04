@@ -1,5 +1,7 @@
 package com.cloud.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.domain.BoardVO;
 import com.cloud.service.BoardService;
@@ -39,7 +42,14 @@ public class BoardController {
 	
 	@PostMapping("/insertBoard")
 	@PreAuthorize("isAuthenticated()")
-	public String insertBoard(BoardVO vo){  //글쓰기 처리
+	public String insertBoard(BoardVO vo) throws IllegalStateException, IOException{//글쓰기 처리
+		//파일 업로드 처리
+		MultipartFile uploadFile = vo.getUploadFile();
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			String filePath = "C:/springwork/SpringBoard2/src/main/webapp/upload/";
+			uploadFile.transferTo(new File(filePath + fileName));
+		}
 		service.insert(vo);
 		return "redirect:/board/boardList";
 	}

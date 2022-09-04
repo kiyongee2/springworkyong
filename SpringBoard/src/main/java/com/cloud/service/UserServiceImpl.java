@@ -1,5 +1,7 @@
 package com.cloud.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,22 @@ public class UserServiceImpl implements UserService{
 	private UserDAO dao;
 
 	@Override
-	public boolean login(UserVO vo) {
+	public int login(UserVO vo) {
 		return dao.login(vo);
+	}
+
+	@Override
+	public List<UserVO> getUserList() {
+		return dao.getUserList();
+	}
+
+	@Override
+	public void insert(UserVO user) {
+		dao.insertUser(user);
+	}
+
+	@Override
+	public UserVO getUser(String id) {
+		return dao.getUser(id);
 	}
 }

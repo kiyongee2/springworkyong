@@ -1,9 +1,9 @@
 package com.cloud.controller;
 
-import java.io.UnsupportedEncodingException;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.repository.BoardVO;
 import com.cloud.service.BoardService;
 
+@RequestMapping("/board/*")
 @Controller
 public class BoardController {
 	
@@ -30,7 +32,7 @@ public class BoardController {
 		
 		model.addAttribute("boardList", boardList); //model-"boardList"
 		model.addAttribute("id", id);
-		return "boardList";
+		return "/board/boardList";
 	}
 	
 	@RequestMapping("/boardView")
@@ -38,12 +40,12 @@ public class BoardController {
 		service.updateCount(bno);  //조회수 증가
 		BoardVO board = service.getBoard(bno);  //상세 보기 처리
 		model.addAttribute("board", board); //model-"board"
-		return "boardView";
+		return "/board/boardView";
 	}
 	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
 	public String insertBoard() {  //글쓰기 폼 페이지 요청
-		return "insertBoard";
+		return "/board/insertBoard";
 	}
 	
 	/*@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
@@ -66,21 +68,27 @@ public class BoardController {
 	}*/
 	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
-	public String insertBoard(BoardVO vo){  //글쓰기 처리
+	public String insertBoard(BoardVO vo) throws IOException{  //글쓰기 처리
 		//command 객체 - BoardVO -> HttpServletRequest request 대체함
+		//파일 업로드 처리
+		MultipartFile uploadFile = vo.getUploadFile();
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			uploadFile.transferTo(new File("C:/upload/" + fileName));
+		}
 		service.insert(vo);
-		return "redirect:boardList";
+		return "redirect:/board/boardList";
 	}
 	
 	@GetMapping("/deleteBoard")
 	public String deleteBoard(BoardVO vo) {  //글 삭제 요청
 		service.delete(vo);
-		return "redirect:boardList";
+		return "redirect:/board/boardList";
 	}
 	
 	@PostMapping("/updateBoard")
 	public String updateBoard(BoardVO vo) {  //글 수정 요청
 		service.update(vo);
-		return "redirect:boardList";
+		return "redirect:/board/boardList";
 	}
 }

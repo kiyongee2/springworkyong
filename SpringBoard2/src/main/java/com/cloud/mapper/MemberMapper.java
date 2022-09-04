@@ -14,6 +14,6 @@ public interface MemberMapper {
 	
 	public void deleteMember(MemberVO member);  //È¸¿ø Å»Åð
 	
-	public void updateMember(MemberVO member);  //È¸¿ø Å»Åð
+	public void updateMember(MemberVO member);  //È¸¿ø ¼öÁ¤
 	
 }

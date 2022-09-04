@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>회원 가입</title>
 <link rel="stylesheet" href="/resources/css/style.css">
+<script src="/resources/js/validation.js"></script>
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
@@ -17,7 +18,8 @@
 			<h1>회원 가입</h1>
 		</div>
 		<div>
-			<form action="/member/signup" method="post" name="regForm">
+		<form action="/member/signup" method="post" name="regForm"
+		      onsubmit="return checkForm()">
 			<table class="tbl_signup">
 				<tr>
 					<td>아이디</td>

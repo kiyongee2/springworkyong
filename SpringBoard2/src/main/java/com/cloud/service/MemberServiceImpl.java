@@ -3,6 +3,7 @@ package com.cloud.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public void signup(MemberVO member) {
-		
+		//비밀번호 암호화
 		String encPw = pwencoder.encode(member.getUserpw());
 		member.setUserpw(encPw);
 		
@@ -55,6 +56,10 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void update(MemberVO member) {
+		//비밀번호 암호화
+		String encPw = pwencoder.encode(member.getUserpw());
+		member.setUserpw(encPw);
+		
 		mapper.updateMember(member);
 	}
 }

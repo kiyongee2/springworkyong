@@ -2,6 +2,7 @@ package com.cloud.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cloud.domain.AuthVO;
 import com.cloud.domain.MemberVO;
 import com.cloud.service.MemberService;
 
@@ -20,7 +22,6 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/member/*")
 @Controller
 public class MemberController {
-	
 	private MemberService service;  //생성자 주입
 	
 	//회원 가입 폼 요청
@@ -29,15 +30,16 @@ public class MemberController {
 		log.info("회원 가입 폼");
 	}
 	
+	//회원 가입 처리
 	@PostMapping("/signup")
-	public String signUp(MemberVO member, RedirectAttributes rttr) {
+	public String signUp(MemberVO member) {
 		service.signup(member);
-		//rttr.addFlashAttribute("result", member.getUserid());
 		return "redirect:/customLogin";
 	}
 	
 	//회원 목록 보기
 	@GetMapping("/memberList")
+	@PreAuthorize("isAuthenticated()")
 	public String getMemberList(Model model) {
 		List<MemberVO> memberList = service.getMemberList();
 		model.addAttribute("memberList", memberList);

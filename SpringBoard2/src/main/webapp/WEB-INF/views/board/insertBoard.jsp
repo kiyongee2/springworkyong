@@ -32,7 +32,7 @@
 			<div class="title">
 				<h2>글쓰기</h2>
 			</div>
-			<form action="/board/insertBoard" method="post" 
+			<form action="/board/insertBoard" method="post" encType="multipart/form-data"
 			      onsubmit="return checkForm()" name="newWrite">
 				<table class="tbl_reg">
 					<tr>
@@ -49,6 +49,10 @@
 						<td>내용</td>
 						<td><textarea name="content" cols="50" rows="10" 
 						              placeholder="content"></textarea></td>
+					</tr>
+					<tr>
+						<td>업로드</td>
+						<td><input type="file" name="uploadFile"></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">

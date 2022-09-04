@@ -56,6 +56,7 @@ footer{margin-left: 20%; margin-top: 10%}
    border-radius:2px;}
 .tbl_login input[type="submit"], input[type="reset"]{width: 60px; height: 30px;}
 #login .error{color: #f00; margin-top: 10px;}
+#login .lang{text-align: right; margin-right: 30%;}
 
 /* signup 스타일 */
 .tbl_signup{margin: 20px auto; width: 400px;}

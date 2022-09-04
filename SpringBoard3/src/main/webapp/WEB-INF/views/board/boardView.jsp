@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,12 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 	<div id="container">
 		<section id="list">
-			<h2>글 상세 보기</h2>
+			<div class="title">
+				<h2>글 상세보기</h2>
+			</div>
 			<form action="/board/updateBoard" method="post">
 			<!-- 수정 시엔 기본키인 bno를 반드시 명시해 줌 -->
 			<input type="hidden" name="bno" value="${board.bno}">
@@ -41,10 +45,15 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center"> 
+						<security:authentication property="principal" var="pinfo"/>
+						<security:authorize access="isAuthenticated()" >
+						<c:if test="${pinfo.username eq board.writer}">
 							<input type="submit" value="글 수정">
 							<a href="/board/deleteBoard?bno=${board.bno}" 
 							   onclick="return confirm('정말로 삭제하시겠습니까>')">
 							   <input type="button" value="삭제"></a>
+				   		</c:if>
+						</security:authorize>
 							<a href="/board/boardList"><input type="button" value="목록"></a>
 						</td>
 					</tr>
@@ -52,5 +61,6 @@
 			</form>
 		</section>
 	</div>
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

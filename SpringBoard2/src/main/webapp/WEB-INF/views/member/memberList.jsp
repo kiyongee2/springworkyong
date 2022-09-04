@@ -20,19 +20,20 @@
 			<table class="tbl_list">
 				<thead>
 					<tr>
+						<th>번호</th>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>가입일</th>
-						<!-- <th>권한</th> -->
 					</tr>
 				<thead>
 				<tbody>
-					<c:forEach items="${memberList}" var="member" >
+					<c:forEach items="${memberList}" var="member" varStatus="status">
 					<tr>
-						<td><a href='/member/memberView?userid=<c:out value="${member.userid}"/>'><c:out value="${member.userid}" /></a></td>
+						<td><c:out value="${status.count}" /></td>
+						<td><a href='/member/memberView?userid=<c:out value="${member.userid}"/>'>
+							<c:out value="${member.userid}" /></a></td>
 						<td><c:out value="${member.username}" />  </td>
 						<td><fmt:formatDate value="${member.regDate}" pattern="yyyy/mm/dd hh:mm:ss" /></td>
-						<td><c:out value="${member.authList.auth}" /> </td>
 					</tr>
 					</c:forEach>
 				</tbody>

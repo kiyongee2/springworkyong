@@ -19,8 +19,6 @@
 			alert("비밀번호를 동일하게 입력하세요");
 			form.userpw_confirm.select();
 			return false;
-		}else{
-			form.submit();
 		}
 	}
 </script>

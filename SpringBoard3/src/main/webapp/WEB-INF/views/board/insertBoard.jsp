@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +17,6 @@
 			return false;
 		}
 		
-		if(!form.writer.value){
-			alert("작성자를 입력해 주세요")
-			form.writer.focus();
-			return false;
-		}
-		
 		if(!form.content.value){
 			alert("내용을 입력해 주세요")
 			form.content.focus();
@@ -31,9 +26,12 @@
 </script>
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 	<div id="container">
 		<section id="register">
-			<h2>글쓰기</h2>
+			<div class="title">
+				<h2>글쓰기</h2>
+			</div>
 			<form action="/board/insertBoard" method="post" 
 			      onsubmit="return checkForm()" name="newWrite">
 				<table class="tbl_reg">
@@ -43,7 +41,9 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td><input type="text" name="writer"></td>
+						<td><input type="text" name="writer"
+						   value='<security:authentication property="principal.username"/>' readonly="readonly">
+						</td>       
 					</tr>
 					<tr>
 						<td>내용</td>
@@ -57,8 +57,10 @@
 						</td>
 					</tr>
 				</table>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</form>
 		</section>
 	</div>
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>
