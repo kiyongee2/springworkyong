@@ -62,6 +62,27 @@ public class UserDAO {
 		}
 	}
 	
+	//ID 중복 체크
+	public boolean duplicatedID(String id) {
+		boolean result = false;
+		try {
+			conn = JDBCUtil.getConnention();
+			String sql = "SELECT DECODE(COUNT(*), 1, 'true', 'false') AS result "
+					+ "FROM t_user WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getBoolean("result");
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, pstmt, rs);
+		}
+		return result;
+	}
+	
 	//회원 목록
 	public List<UserVO> getUserList(){
 		List<UserVO> userList = new ArrayList<>();

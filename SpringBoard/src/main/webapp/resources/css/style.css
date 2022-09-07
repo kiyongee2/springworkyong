@@ -42,7 +42,7 @@ hr{margin-top: 20px;}
 #login .error{color: red;}
 
 /* signup 스타일 */
-.tbl_signup{margin: 20px auto; width: 400px;}
+.tbl_signup{margin: 20px auto; width: 450px;}
 .tbl_signup, th, td{border: 1px solid #ccc; border-collapse:collapse; padding: 10px;}
 .tbl_signup input{width: 200px; height: 30px; border: 1px solid #aaa; border-radius: 3px;}
 .tbl_signup input[type="submit"], input[type="reset"], input[type="button"]{width: 60px; height:30px;}

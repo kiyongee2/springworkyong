@@ -16,4 +16,6 @@ public interface MemberMapper {
 	
 	public void updateMember(MemberVO member);  //회원 수정
 	
+	public int checkID(String userid);
+	
 }

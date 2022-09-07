@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.repository.BoardVO;
@@ -45,6 +46,19 @@ public class UserController{
 	public String signUp(UserVO user){ 
 		service.insert(user);
 		return "redirect:/user/login";
+	}
+	
+	@RequestMapping(value="/checkID", method=RequestMethod.POST)
+	@ResponseBody  //데이터 전송 어노테이션
+	public String checkID(String id) {
+		boolean duplicatedID = service.duplicatedID(id);
+		String msg ="";
+		if(duplicatedID==true) {
+			msg = "not_usable";
+		}else {
+			msg = "usable";
+		}
+		return msg;
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)

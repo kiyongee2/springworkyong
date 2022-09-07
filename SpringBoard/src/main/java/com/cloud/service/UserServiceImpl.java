@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService{
 	public UserVO getUser(String id) {
 		return dao.getUser(id);
 	}
+
+	@Override
+	public boolean duplicatedID(String id) {
+		return dao.duplicatedID(id);
+	}
 }

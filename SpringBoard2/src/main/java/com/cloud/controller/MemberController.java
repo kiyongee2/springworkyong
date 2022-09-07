@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloud.domain.AuthVO;
@@ -32,9 +34,23 @@ public class MemberController {
 	
 	//회원 가입 처리
 	@PostMapping("/signup")
-	public String signUp(MemberVO member) {
+	public String signUp(MemberVO member, String userid) {
+		/*int result = service.checkID(userid);
+		if(result == 1) {
+			return "/member/signup";
+		}else if(result == 0) {
+			service.signup(member);
+		}*/
 		service.signup(member);
 		return "redirect:/customLogin";
+	}
+	
+	//ID 중복 체크
+	@GetMapping("/checkID")
+	@ResponseBody  //데이터 전송 어노테이션
+	public int checkID(String userid) {
+		int result = service.checkID(userid);
+		return result;
 	}
 	
 	//회원 목록 보기

@@ -62,4 +62,11 @@ public class MemberServiceImpl implements MemberService{
 		
 		mapper.updateMember(member);
 	}
+
+	@Override
+	public int checkID(String userid) {
+		return mapper.checkID(userid);
+	}
+
+
 }

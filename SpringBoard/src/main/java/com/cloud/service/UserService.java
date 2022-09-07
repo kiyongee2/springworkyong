@@ -13,4 +13,6 @@ public interface UserService {
 	public int login(UserVO vo);  //로그인 처리
 	
 	public UserVO getUser(String id);
+	
+	public boolean duplicatedID(String id);
 }

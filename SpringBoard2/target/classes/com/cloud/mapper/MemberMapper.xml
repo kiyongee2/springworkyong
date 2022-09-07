@@ -41,6 +41,12 @@
 		VALUES (#{userid}, #{userpw}, #{username}, '1')
 	</insert>
 	
+	<!-- 아이디 중복 체크 -->
+	<select id="checkID" resultType="int">
+		SELECT COUNT(*) FROM tbl_member 
+		WHERE userid = #{userid}
+	</select>
+	
 	<!-- 회원 삭제 -->
 	<delete id="deleteMember">
 		DELETE FROM tbl_member WHERE userid = #{userid}
