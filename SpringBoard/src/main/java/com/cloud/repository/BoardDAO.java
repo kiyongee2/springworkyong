@@ -24,12 +24,23 @@ public class BoardDAO {
 			+ "(seq.NEXTVAL, ?, ?, ?)";
 	private final String BOARD_LIST =
 			"SELECT * FROM board ORDER BY bno DESC";
+	private final String BOARD_LIST_T =
+			"SELECT * FROM board WHERE title LIKE '%'||?||'%' ORDER BY bno DESC";
+	private final String BOARD_LIST_C =
+			"SELECT * FROM board WHERE content LIKE '%'||?||'%' ORDER BY bno DESC";
+	private final String BOARD_LIST_PAGE =
+			"SELECT * FROM("
+			+ " SELECT ROWNUM num, bo.*"
+			+ " FROM (SELECT * FROM board ORDER BY bno DESC) bo"
+			+ " )"
+			+ " WHERE num BETWEEN ? AND ?";
 	private final String BOARD_ONE =
 			"SELECT * FROM board WHERE bno = ?";
 	private final String BOARD_UPDATE =
 			"UPDATE board SET title = ?, content = ? WHERE bno = ?";
 	private final String BOARD_DELETE =
 			"DELETE FROM board WHERE bno = ?";
+	
 	//글 등록
 	public void insertBoard(BoardVO vo) {
 		System.out.println("==> insertBoard() 기능 처리");
@@ -48,8 +59,40 @@ public class BoardDAO {
 		}
 	}
 	
+	//글 목록 - PAGE
+	public List<BoardVO> getBoardList(BoardVO vo){
+		System.out.println("==> getBoardList() 기능 처리");
+		List<BoardVO> boardList = new ArrayList<>();
+		try {
+			conn = JDBCUtil.getConnention();
+			if(vo.getSearchCondition().equals("TITLE")) {
+				pstmt = conn.prepareStatement(BOARD_LIST_T);
+			}else if(vo.getSearchCondition().equals("CONTENT")){
+				pstmt = conn.prepareStatement(BOARD_LIST_C);
+			}
+			pstmt.setString(1, vo.getSearchKeyword());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setBno(rs.getInt("bno"));
+				board.setTitle(rs.getString("title"));
+				board.setWriter(rs.getString("writer"));
+				board.setContent(rs.getString("content"));
+				board.setRegDate(rs.getDate("regdate"));
+				board.setCnt(rs.getInt("cnt"));
+				
+				boardList.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, pstmt, rs);
+		}
+		return boardList;
+	}
+	
 	//글 목록
-	public List<BoardVO> getBoardList(){
+	/*public List<BoardVO> getBoardList(){
 		System.out.println("==> getBoardList() 기능 처리");
 		List<BoardVO> boardList = new ArrayList<>();
 		try {
@@ -73,6 +116,26 @@ public class BoardDAO {
 			JDBCUtil.close(conn, pstmt, rs);
 		}
 		return boardList;
+	}*/
+	
+	//로그인한 이름 가져오기
+	public String getNameByLogin(String id) {
+		String name = null;
+		try {
+			conn = JDBCUtil.getConnention();
+			String sql ="SELECT name FROM t_user WHERE id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				name = rs.getString("name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, pstmt, rs);
+		}
+		return name;
 	}
 	
 	//글 상세 보기
@@ -159,4 +222,12 @@ public class BoardDAO {
 			JDBCUtil.close(conn, pstmt);
 		}
 	}
+	
+	
 }
+
+
+
+
+
+

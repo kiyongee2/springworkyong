@@ -2,14 +2,19 @@ package com.cloud.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,9 +30,24 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
+	//검색 조건 목록 설정
+	@ModelAttribute("conditionMap")
+	public Map<String, String> searchConditionMap(){
+		Map<String, String> conditionMap = new HashMap<String, String>();
+		conditionMap.put("제목", "TITLE");
+		conditionMap.put("내용", "CONTENT");
+		return conditionMap;
+	}
+	
 	@RequestMapping("/boardList")
-	public String getBoardList(Model model, HttpSession session) {  //게시글 목록 요청
-		List<BoardVO> boardList = service.getBoardList();
+	public String getBoardList(BoardVO vo, Model model, HttpSession session) {  //게시글 목록 요청
+		//null 체크
+		if(vo.getSearchCondition() == null)
+			vo.setSearchCondition("TITLE");
+		if(vo.getSearchKeyword() == null)
+			vo.setSearchKeyword("");
+		
+		List<BoardVO> boardList = service.getBoardList(vo);
 		String id = (String)session.getAttribute("sessionId");
 		
 		model.addAttribute("boardList", boardList); //model-"boardList"
@@ -44,28 +64,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
-	public String insertBoard() {  //글쓰기 폼 페이지 요청
+	public String insertBoard(HttpSession session, Model model) {  //글쓰기 폼 페이지 요청
+		String id = (String)session.getAttribute("sessionId");
+		String name = service.getNameByLogin(id);
+		model.addAttribute("name", name);
 		return "/board/insertBoard";
 	}
-	
-	/*@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
-	public String insertBoard(HttpServletRequest request) throws UnsupportedEncodingException {
-		//사용자 입력 정보 추출
-		request.setCharacterEncoding("utf-8");
-		
-		String title = request.getParameter("title");
-		String writer = request.getParameter("title");
-		String content = request.getParameter("content");
-		
-		//db 연동
-		BoardVO vo = new BoardVO();
-		vo.setTitle(title);
-		vo.setWriter(writer);
-		vo.setContent(content);
-		
-		boardService.insert(vo);
-		return "redirect:boardList";
-	}*/
 	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
 	public String insertBoard(BoardVO vo) throws IOException{  //글쓰기 처리

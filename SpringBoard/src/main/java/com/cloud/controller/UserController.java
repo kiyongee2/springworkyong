@@ -68,15 +68,11 @@ public class UserController{
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(UserVO user, HttpSession session, Model model) { //로그인 처리 요청
-		if(user.getId() == null || user.getId().equals("")) {
-			throw new IllegalArgumentException("아이디는 반드시 입력해야 합니다.");
-		}
-		
 		int result = service.login(user);
 		System.out.println(result);
 		if(result==1) {
 			session.setAttribute("sessionId", user.getId()); //세션 발급
-			return "redirect:/user/userList";
+			return "redirect:/board/boardList";
 		}else {
 			int error = 1;
 			model.addAttribute("error", error);
@@ -87,7 +83,7 @@ public class UserController{
 	@GetMapping("/logout")
 	public String logout(HttpSession session) { //로그 아웃 처리 요청
 		session.invalidate(); //세션 삭제
-		return "index";
+		return "redirect:/";
 	}
 	
 	//회원 정보

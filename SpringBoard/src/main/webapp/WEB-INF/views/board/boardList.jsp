@@ -15,8 +15,25 @@
 			<h2>글 목록</h2>
 			<h3>
 				<c:out value="${id}" />님 환영합니다... &nbsp;&nbsp;&nbsp;
-				 <a href="/logout" style="color:green">Logout</a>
+				 <a href="/user/logout" style="color:green">Logout</a>
 			</h3>
+			<!-- 검색 시작 -->
+			<form action="/board/boardList" method="post" class="search">
+				<table class="tbl_search">
+					<tr>
+						<td>
+							<select name="searchCondition">
+							<c:forEach var="option" items="${conditionMap}">
+								<option value="${option.value}">${option.key}</option>
+							</c:forEach>
+							</select>
+							<input type="text" name="searchKeyword">
+							<input type="submit" value="검색">
+						</td>
+					</tr>
+				</table>
+			</form>
+			<!-- 검색 종료 -->
 			<table class="tbl_list">
 				<tr>
 					<th>번호</th>

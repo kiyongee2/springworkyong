@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cloud.repository.BoardDAO;
 import com.cloud.repository.BoardVO;
 
-@Service("boardService")
+@Service
 public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
@@ -20,8 +20,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override 
-	public List<BoardVO> getBoardList() {  //글 목록
-		return dao.getBoardList();
+	public List<BoardVO> getBoardList(BoardVO vo) {  //글 목록(페이지)
+		return dao.getBoardList(vo);
 	}
 
 	@Override
@@ -43,4 +43,10 @@ public class BoardServiceImpl implements BoardService{
 	public void updateCount(int bno) {  //조회수
 		dao.updateCount(bno);
 	}
+
+	@Override
+	public String getNameByLogin(String id) {
+		return dao.getNameByLogin(id);
+	}
+
 }

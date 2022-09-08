@@ -19,4 +19,6 @@ public class BoardVO {
 	private Date regDate;
 	private int cnt;
 	private MultipartFile uploadFile;
+	private String searchCondition;
+	private String searchKeyword;
 }

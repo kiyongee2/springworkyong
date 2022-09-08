@@ -11,12 +11,15 @@ hr{margin-top: 20px;}
 #main h4 a{color: #00f;}
 
 /* boardList 스타일 */
-.tbl_list{margin: 20px auto; width: 620px; text-align: center;}
-.tbl_list, th, td{border: 1px solid #ccc; border-collapse:collapse; padding: 10px;}
+.search{margin: 30px auto 0; width: 598px;}
+.tbl_search{margin-left: 300px;}
+.tbl_list{margin: 0 auto 10px auto; width: 620px;}
+.search, .tbl_list, th, td{border: 1px solid #ccc; border-collapse:collapse; padding: 10px;}
 .tbl_list th{background-color: #eee;}
 .tbl_list td:nth-of-type(2){text-align: left; padding-left: 15px;}
 .tbl_list a{text-decoration: none; color: #222;}
 .btn_box{width: 620px; margin: 0 auto; text-align: left}
+
 
 /* insertBoard 스타일 */
 .tbl_reg{margin: 20px auto; width: 580px; text-align: center;}

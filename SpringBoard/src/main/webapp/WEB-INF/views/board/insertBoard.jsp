@@ -37,7 +37,7 @@
 		<section id="register">
 			<h2>글쓰기</h2>
 			<hr>
-			<form action="/insertBoard" method="post" enctype="multipart/form-data"
+			<form action="/board/insertBoard" method="post" enctype="multipart/form-data"
 			      onsubmit="return checkForm()" name="newWrite">
 				<table class="tbl_reg">
 					<tr>
@@ -46,7 +46,7 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td><input type="text" name="writer"></td>
+						<td><input type="text" name="writer" value="${name}"></td>
 					</tr>
 					<tr>
 						<td>내용</td>
@@ -59,7 +59,7 @@
 					<tr>
 						<td colspan="2" align="center">
 						    <input type="submit" value="글쓰기">
-						    <a href="/boardList"><input type="button" value="목록"></a>
+						    <a href="/board/boardList"><input type="button" value="목록"></a>
 						</td>
 					</tr>
 				</table>

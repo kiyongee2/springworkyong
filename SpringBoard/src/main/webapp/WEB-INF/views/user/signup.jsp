@@ -14,11 +14,11 @@ function checkID(){
 	//alert("check");
 	let t_id = $("#t_id").val();
 	$.ajax({
-		type: "post",
-		url: "http://localhost:8080/user/checkID",
+		type: "get",
+		url: "/user/checkID",
 		dataType: "json",
 		async: false,
-		data: {id: t_id},  //서블릿쪽으로 id 보냄
+		data: {"id": t_id},  //서블릿쪽으로 id 보냄
 		success: function(data){ //서블릿에서 응답 받음
 			console.log(data);
 			
@@ -50,7 +50,8 @@ function checkID(){
 					<td>아이디</td>
 					<td class="t_id">
 						<input type="text" id="t_id" name="id" placeholder="ID">
-						<input type="button" value="ID 중복" onclick="checkID()">
+						<button type="button" id="idCheck" value="N" 
+						        onclick="checkID()">ID 중복</button>
 						<p id="check"></p>
 					</td>
 				</tr>

@@ -31,14 +31,14 @@ public class BoardController {
 		return "/board/boardList";
 	}
 	
-	@GetMapping("/insertBoard")
 	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/insertBoard")
 	public String insertBoard() {  //글쓰기 폼 페이지 요청
 		return "/board/insertBoard";
 	}
 	
 	@PostMapping("/insertBoard")
-	@PreAuthorize("isAuthenticated()")
+	//@PreAuthorize("isAuthenticated()")
 	public String insertBoard(BoardVO vo){  //글쓰기 처리
 		service.insert(vo);
 		return "redirect:/board/boardList";

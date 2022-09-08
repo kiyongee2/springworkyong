@@ -8,7 +8,9 @@ public interface BoardService {
 	
 	public void insert(BoardVO vo);   //글 쓰기
 	
-	public List<BoardVO> getBoardList(); //글 목록
+	public List<BoardVO> getBoardList(BoardVO vo); //글 목록
+	
+	public String getNameByLogin(String id); //로그인한 글쓴이
 	
 	public BoardVO getBoard(int bno); //글 상세보기
 	
