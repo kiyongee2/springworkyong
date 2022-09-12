@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>글 상세</title>
 <link rel="stylesheet" href="/resources/css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
@@ -18,8 +19,10 @@
 				<h2>글 상세보기</h2>
 			</div>
 			<form action="/board/updateBoard" method="post">
-			<!-- 수정 시엔 기본키인 bno를 반드시 명시해 줌 -->
-			<input type="hidden" name="bno" value="${board.bno}">
+				<!-- 수정 시엔 기본키인 bno를 반드시 명시해 줌 -->
+				<input type="hidden" name="bno" value="${board.bno}">
+				<input type="hidden" name="pageNum" value="${cri.pageNum}">
+				<input type="hidden" name="amount" value="${cri.amount}">
 				<table class="tbl_view">
 					<tr>
 						<td width="100">제목</td>
@@ -50,17 +53,35 @@
 						<c:if test="${pinfo.username eq board.writer}">
 							<input type="submit" value="글 수정">
 							<a href="/board/deleteBoard?bno=${board.bno}" 
-							   onclick="return confirm('정말로 삭제하시겠습니까>')">
+							   onclick="return confirm('정말로 삭제하시겠습니까?')">
 							   <input type="button" value="삭제"></a>
 				   		</c:if>
 						</security:authorize>
-							<a href="/board/boardList"><input type="button" value="목록"></a>
+							<a href="/board/boardList"><input type="button" value="목록" class="listBtn"></a>
 						</td>
 					</tr>
 				</table>
 			</form>
 		</section>
+		<form action="/board/boardList" method="get" id="actionForm">
+			<input type="hidden" name="bno" value="${board.bno}">
+			<input type="hidden" name="pageNum" value="${cri.pageNum}">
+			<input type="hidden" name="amount" value="${cri.amount}">
+		</form>
 	</div>
 	<jsp:include page="../footer.jsp" />
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		let actionForm = $("#actionForm");
+		//목록 버튼 클릭
+		$(".listBtn").click(function(e){
+			
+			e.preventDefault();
+			actionForm.submit();
+		});
+	});
+</script>
 </body>
 </html>

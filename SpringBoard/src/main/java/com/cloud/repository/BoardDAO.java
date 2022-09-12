@@ -70,7 +70,7 @@ public class BoardDAO {
 			}else if(vo.getSearchCondition().equals("CONTENT")){
 				pstmt = conn.prepareStatement(BOARD_LIST_C);
 			}
-			pstmt.setString(1, vo.getSearchKeyword());
+			pstmt.setString(1, vo.getSearchKeyWord());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				BoardVO board = new BoardVO();

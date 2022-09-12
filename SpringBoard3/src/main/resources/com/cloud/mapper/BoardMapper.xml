@@ -9,6 +9,25 @@
 		SELECT * FROM tbl_board ORDER BY bno DESC
 	</select>
 	
+	<!-- 목록 보기(페이지 처리) -->
+	<select id="getListWithPage" resultType="com.cloud.domain.BoardVO">
+		<![CDATA[
+		SELECT * FROM
+		(
+		    SELECT /*+ INDEX_DESC(tbl_board pk_board) */ 
+		        ROWNUM rn, bno, title, content, writer, regdate, updatedate, cnt
+		    FROM tbl_board 
+		    WHERE ROWNUM <= (#{pageNum} * #{amount})
+		)
+		WHERE rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<!-- 게시글 총 개수 -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM tbl_board WHERE bno > 0
+	</select>
+	
 	<!-- 글쓰기 -->
 	<insert id="insert">
 		INSERT INTO tbl_board(bno, title, writer, content) 
@@ -28,7 +47,11 @@
 	<!-- 글 수정 -->
 	<update id="update">
 		UPDATE tbl_board
-		SET title = #{title}, content = #{content}
+		SET 
+			title = #{title}, 
+			writer=#{writer}, 
+			content=#{content}, 
+			updatedate = sysdate
 		WHERE bno = #{bno}
 	</update>
 	

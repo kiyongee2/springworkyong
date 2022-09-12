@@ -18,7 +18,7 @@ public class BoardVO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date regDate;
 	private int cnt;
-	private MultipartFile uploadFile;
+	private MultipartFile uploadFile;  //파일 업로드
 	private String searchCondition;
-	private String searchKeyword;
+	private String searchKeyWord;
 }

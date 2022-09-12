@@ -22,11 +22,11 @@
 				<table class="tbl_search">
 					<tr>
 						<td>
-							<select name="searchCondition">
+							<%-- <select name="searchCondition">
 							<c:forEach var="option" items="${conditionMap}">
 								<option value="${option.value}">${option.key}</option>
 							</c:forEach>
-							</select>
+							</select> --%>
 							<input type="text" name="searchKeyword">
 							<input type="submit" value="검색">
 						</td>

@@ -26,7 +26,7 @@ footer{margin-left: 20%; margin-top: 10%}
 .tbl_list th{background: #eee;}
 .btn_box{width: 620px; margin: 0 auto; text-align: left}
 #list button{padding: 10px 20px;}
-
+#list ul li{display: inline-block; margin: 5px;}
 /* insertBoard 스타일 */
 .tbl_reg{margin: 20px auto; width: 580px;}
 .tbl_reg, td{border: 1px solid #ccc; border-collapse: collapse;

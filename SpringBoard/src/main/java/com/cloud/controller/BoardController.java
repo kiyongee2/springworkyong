@@ -44,8 +44,8 @@ public class BoardController {
 		//null üũ
 		if(vo.getSearchCondition() == null)
 			vo.setSearchCondition("TITLE");
-		if(vo.getSearchKeyword() == null)
-			vo.setSearchKeyword("");
+		if(vo.getSearchKeyWord() == null)
+			vo.setSearchKeyWord("");
 		
 		List<BoardVO> boardList = service.getBoardList(vo);
 		String id = (String)session.getAttribute("sessionId");
