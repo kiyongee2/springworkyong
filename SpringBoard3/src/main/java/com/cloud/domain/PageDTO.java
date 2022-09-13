@@ -4,13 +4,12 @@ import lombok.Data;
 
 @Data
 public class PageDTO {
+	private int startPage;   //시작 페이지
+	private int endPage;     //마지막 페이지
+	private boolean prev, next;  //이전, 다음
 	
-	private int startPage;
-	private int endPage;
-	private boolean prev, next;
-	
-	private int total;
-	private Criteria cri;
+	private int total;     //게시글 총 수
+	private Criteria cri;  //페이지 번호와 페이지당 게시글 수 참조
 	
 	public PageDTO(Criteria cri, int total) {
 		this.cri = cri;
