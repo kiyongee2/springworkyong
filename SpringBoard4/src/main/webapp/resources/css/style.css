@@ -17,6 +17,7 @@ nav ul li:hover{background: #eee;}
 .title{height: 130px; background: beige; line-height: 130px;
     margin-bottom: 20px;}
 .msg{height: 80px; background: pink; line-height: 80px; color: brown;}
+.exception{padding: 50px; background: pink;}
 footer{margin-left: 20%; margin-top: 10%}
 
 /* boardList 스타일 */
@@ -25,8 +26,10 @@ footer{margin-left: 20%; margin-top: 10%}
    padding: 10px;}
 .tbl_list th{background: #eee;}
 .btn_box{width: 620px; margin: 0 auto; text-align: left}
+#list select, .keyword{height:30px;}
 #list button{padding: 10px 20px;}
 #list ul li{display: inline-block; margin: 5px;}
+
 /* insertBoard 스타일 */
 .tbl_reg{margin: 20px auto; width: 580px;}
 .tbl_reg, td{border: 1px solid #ccc; border-collapse: collapse;

@@ -21,6 +21,7 @@
 			<form action="/board/updateBoard" method="post">
 				<!-- 수정 시엔 기본키인 bno를 반드시 명시해 줌 -->
 				<input type="hidden" name="bno" value="${board.bno}">
+				<!-- 수정, 삭제시 페이지 번호 유지(없으면 1페이지 이동) -->
 				<input type="hidden" name="pageNum" value="${cri.pageNum}">
 				<input type="hidden" name="amount" value="${cri.amount}">
 				<table class="tbl_view">
@@ -65,6 +66,7 @@
 		</section>
 		<form action="/board/boardList" method="get" id="actionForm">
 			<input type="hidden" name="bno" value="${board.bno}">
+			<!-- 목록 페이지로 이동시 페이지 번호 유지(없으면 1페이지로 감) -->
 			<input type="hidden" name="pageNum" value="${cri.pageNum}">
 			<input type="hidden" name="amount" value="${cri.amount}">
 		</form>

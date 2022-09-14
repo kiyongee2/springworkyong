@@ -17,6 +17,7 @@ public class BoardVO {
 	private String content;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date regDate;
+	private Date updateDate;
 	private int cnt;
 	
 	private MultipartFile uploadFile;  //파일 업로드

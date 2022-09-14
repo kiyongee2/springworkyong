@@ -76,15 +76,17 @@ public class BoardController {
 	}
 
 	@RequestMapping("/boardView")
-	public String getBoard(int bno, @ModelAttribute("cri") Criteria cri, Model model) { //상세 보기 요청
+	public String getBoard(int bno, Criteria cri, Model model) { //상세 보기 요청
 		service.updateCount(bno);  //조회수 증가
 		BoardVO board = service.getBoard(bno);  //상세 보기 처리
+		
 		model.addAttribute("board", board); //model-"board"
+		model.addAttribute("cri", cri);  //model-"cri"
 		return "/board/boardView";
 	}
 	
 	@GetMapping("/board/deleteBoard")
-	public String deleteBoard(BoardVO vo, @ModelAttribute("cri") Criteria cri, 
+	public String deleteBoard(BoardVO vo, Criteria cri, 
 			RedirectAttributes rttr) {  //글 삭제 요청
 		service.delete(vo);
 		rttr.addAttribute("pageNum", cri.getPageNum());
@@ -94,9 +96,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board/updateBoard")
-	public String updateBoard(BoardVO vo, @ModelAttribute("cri") Criteria cri, 
+	public String updateBoard(BoardVO vo, Criteria cri, 
 			RedirectAttributes rttr) {  //글 수정 요청
 		service.update(vo);
+		//URL 뒤에 원래의 페이지로 이동하기 위해 pageNum과 amount 값을 보내줌
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		

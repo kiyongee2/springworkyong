@@ -33,9 +33,9 @@ public class BoardMapperTests {
 		list.stream()
 			.map(board -> board.getBno())
 			.forEach(board -> log.info(board));
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void testPaging() {
 		
 		Criteria cri = new Criteria();
@@ -48,9 +48,9 @@ public class BoardMapperTests {
 		list.stream()
 			.map(board -> board.getTitle())
 			.forEach(board -> log.info(board));
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void testPageDTO() {
 		Criteria cri = new Criteria();
 		//cri.setPageNum(1);
@@ -63,29 +63,31 @@ public class BoardMapperTests {
 	@Test
 	public void testSearch() {
 		Map<String, String> map = new HashMap<>();
-		//map.put("T", "TTT");
-		//map.put("C", "CCC");
+		map.put("T", "가을");
+		map.put("C", "추석");
+		map.put("W", "cloud");
 		
+		//중첩 Map 사용
 		Map<String, Map<String, String>> outer = new HashMap<>();
-		outer.put("map", map);
+		outer.put("map", map);  //xml쪽의 collection="map"
 		
 		List<BoardVO> list = mapper.searchTest(outer);
 		
 		log.info(list);
 	}
 	
-	@Test
+	/*@Test
 	public void testSearchPaging() {
 		
 		Criteria cri = new Criteria();
 		//2페이지 10개 출력
-		cri.setType("TCW");
-		cri.setKeyword("Test");
+		cri.setType("TC");   //title, content
+		cri.setKeyword("추석");
 		
 		List<BoardVO> list = mapper.getListWithPage(cri);
 		
 		list.stream()
 			.map(board -> board.getTitle())
 			.forEach(board -> log.info(board));
-	}
+	}*/
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Ticket {
 	
-	private int tno;
-	private String owner;
-	private String grade;
+	private int tno;       //번호
+	private String owner;  //소유주
+	private String grade;  //등급
 }

@@ -33,26 +33,14 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
-	/*@GetMapping("/boardList")
-	public String getBoardList(Model model, HttpSession session) {//게시글 목록 요청
-		List<BoardVO> boardList = service.getBoardList();
-		String id = (String)session.getAttribute("sessionId");
-		
-		model.addAttribute("boardList", boardList); //model-"boardList"
-		model.addAttribute("id", id);
-		return "/board/boardList";
-	}*/
-	
 	@GetMapping("/boardList")
-	public String getBoardList(Criteria cri, Model model, HttpSession session) {//게시글 목록 요청
+	public String getBoardList(Criteria cri, Model model) {//게시글 목록 요청
 		List<BoardVO> boardList = service.getListWithPage(cri);
 		PageDTO pageMaker = new PageDTO(cri, service.getTotalCount(cri));
-		String id = (String)session.getAttribute("sessionId");
 		
 		log.info(cri);
 		model.addAttribute("boardList", boardList); //model-"boardList"
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("id", id);
 		return "/board/boardList";
 	}
 	
@@ -78,7 +66,7 @@ public class BoardController {
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping("/boardView")
-	public String getBoard(int bno, @ModelAttribute("cri") Criteria cri, Model model) { //상세 보기 요청
+	public String getBoard(int bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		service.updateCount(bno);  //조회수 증가
 		BoardVO board = service.getBoard(bno);  //상세 보기 처리
 		model.addAttribute("board", board); //model-"board"
@@ -86,7 +74,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/deleteBoard")
-	public String deleteBoard(BoardVO vo, @ModelAttribute("cri") Criteria cri, 
+	public String deleteBoard(BoardVO vo, Criteria cri, 
 			RedirectAttributes rttr) {  //글 삭제 요청
 		service.delete(vo);
 		rttr.addAttribute("pageNum", cri.getPageNum());
@@ -98,7 +86,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board/updateBoard")
-	public String updateBoard(BoardVO vo, @ModelAttribute("cri") Criteria cri, 
+	public String updateBoard(BoardVO vo, Criteria cri, 
 			RedirectAttributes rttr) {  //글 수정 요청
 		service.update(vo);
 		rttr.addAttribute("pageNum", cri.getPageNum());

@@ -28,7 +28,8 @@
 					<option value="TW">제목 or 작성자</option>
 					<option value="TWC">제목 or 내용 or 작성자</option>
 				</select>
-				<input type="text" name="keyword" value="${pageMaker.cri.keyword}">
+				<input type="text" name="keyword" value="${pageMaker.cri.keyword}" 
+				       class="keyword">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 				<button>Search</button>
@@ -79,13 +80,13 @@
 					</c:if>
 				</ul>
 			</div>
+			<!-- 폼 전송(페이지, 키워드) -->
 			<form action="/board/boardList" method="get" id="actionForm">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 				<input type="hidden" name="type" value="${pageMaker.cri.type}">
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
 			</form>
-			
 			<div class="btn_box">
 				<a href="/board/insertBoard"><input type="button" value="글쓰기"></a>
 			</div>
@@ -97,16 +98,16 @@
 	//페이징 처리
 	$(document).ready(function(){
 		
-		let actionForm = $("#actionForm");
+let actionForm = $("#actionForm"); //폼 선택
 		
 		$(".page-link a").on('click', function(e){
 			
-			e.preventDefault();  //기본 동작 제한
+			e.preventDefault();  //기본 동작 제한(링크 안되게 함)
 			let targetPage = $(this).attr("href");
 			console.log(targetPage);
 			
 			actionForm.find("input[name='pageNum']").val(targetPage);
-			actionForm.submit(); //페이지 처리 완료
+			actionForm.submit(); //페이지 처리 완료(submit 전에 콘솔에서 테스트 하기)
 		});
 		
 		//상세 페이지
@@ -130,7 +131,6 @@
 			searchForm.submit();
 		});
 	});
-
 </script>
 </body>
 </html>

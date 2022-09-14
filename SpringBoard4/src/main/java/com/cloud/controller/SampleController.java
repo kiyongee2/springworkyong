@@ -19,23 +19,27 @@ import com.cloud.domain.Ticket;
 
 import lombok.extern.log4j.Log4j;
 
+@Log4j
 @RestController
 @RequestMapping("/sample")
-@Log4j
 public class SampleController {
 	
+	//문자열 리턴
 	@GetMapping(value="/getText", produces="text/plain; charset=utf-8")
 	public String getText() {
 		log.info("MIME TYPE: " + MediaType.TEXT_PLAIN_VALUE);
-		return "안녕하세요";
+		return "안녕~ REST";  //"Hello~ REST" , 한글인 경우 ???로 출력
 	}
 	
-	@GetMapping(value="/getSample", produces= {MediaType.APPLICATION_JSON_VALUE,
-			MediaType.APPLICATION_XML_VALUE})
+	//VO 객체 리턴
+	@GetMapping(value="/getSample", 
+			    produces= {MediaType.APPLICATION_JSON_VALUE,
+			    		   MediaType.APPLICATION_XML_VALUE})
 	public SampleVO getSample() {
-		return new SampleVO(112, "스타", "로드");
+		return new SampleVO(112, "잡스", "스티브");
 	}
 	
+	//컬렉션(리스트) 리턴 
 	@GetMapping("/getList")
 	public List<SampleVO> getList(){
 		return IntStream.range(1, 10)
@@ -43,6 +47,7 @@ public class SampleController {
 						.collect(Collectors.toList());
 	}
 	
+	//컬렉션(Map) 리턴
 	@GetMapping("/getMap")
 	public Map<String, SampleVO> getMap(){
 		Map<String, SampleVO> map = new HashMap<>();
@@ -50,12 +55,15 @@ public class SampleController {
 		return map;
 	}
 	
+	//배열로 리턴 - URL 경로 일부를 파라미터로 사용
 	@GetMapping("/product/{cat}/{pid}")
-	public String[] getpath(@PathVariable("cat") String cat, 
+	public String[] getpath(
+			@PathVariable("cat") String cat, 
 			@PathVariable("pid") String pid) {
 		return new String[] {"category: " + cat, "productid: " + pid};
 	}
 	
+	//@RequestBody는 ticket 객체 타입으로 변환을 요구함 - PostMapping 주의!
 	@PostMapping("/ticket")
 	public Ticket convert(@RequestBody Ticket ticket) {
 		log.info("convert..........ticket" + ticket);

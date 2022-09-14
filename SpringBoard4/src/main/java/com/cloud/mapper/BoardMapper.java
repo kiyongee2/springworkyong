@@ -16,6 +16,8 @@ public interface BoardMapper {
 	
 	public int getTotalCount(Criteria cri);  //게시글 총 개수
 	
+	List<BoardVO> searchTest(Map<String, Map<String, String>> map);  //검색
+	
 	public BoardVO getBoard(int bno); //글 상세보기
 	
 	public void delete(BoardVO vo); //글 삭제
@@ -23,6 +25,4 @@ public interface BoardMapper {
 	public void update(BoardVO vo); //글 수정
 	
 	public void updateCount(int bno); //조회수
-	
-	List<BoardVO> searchTest(Map<String, Map<String, String>> map);  //검색
 }
