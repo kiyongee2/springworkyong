@@ -26,11 +26,11 @@
 						<td>비밀번호</td>
 						<td><input type="password" name="password"></td>
 					</tr>
-					<tr>
+				<!-- 	<tr>
 						<td colspan="2">
 							<input type="checkbox" name="remember-me">Remember Me
 						</td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td colspan="2">
 							<input type="submit" value="로그인">

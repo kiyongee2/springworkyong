@@ -26,7 +26,8 @@
 		resultType="com.cloud.domain.BoardVO">
 		<![CDATA[
 		SELECT * FROM
-		    (SELECT /*+ INDEX_DESC(tbl_board pk_board) */ 
+		(
+			SELECT /*+ INDEX_DESC(tbl_board pk_board) */ 
 		        ROWNUM rn, bno, title, content, writer, regdate, updatedate, cnt 
 		    FROM tbl_board 
 		    WHERE
@@ -34,7 +35,8 @@
 		<include refid="criteria"></include>
 		
     	<![CDATA[
-		    ROWNUM <= #{pageNum} * #{amount})
+		    ROWNUM <= #{pageNum} * #{amount}
+		)
 		WHERE rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>
@@ -42,9 +44,9 @@
 	<!-- 게시글 총 개수(검색) -->
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM tbl_board
-		WHERE
+<!-- 		WHERE
 		<include refid="criteria"></include>
-		bno > 0
+		bno > 0 -->
 	</select>
 	
 	<!-- 게시글 검색(테스트) -->

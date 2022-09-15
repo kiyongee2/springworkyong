@@ -9,7 +9,7 @@ public interface BoardService {
 	
 	public void insert(BoardVO vo);   //글 쓰기
 	
-	public List<BoardVO> getBoardList(); //글 목록
+	public List<BoardVO> getBoardList(BoardVO vo); //글 목록
 	
 	public List<BoardVO> getListWithPage(Criteria cri);
 	

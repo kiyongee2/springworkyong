@@ -16,8 +16,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 
 	@Override
-	public List<BoardVO> getBoardList() { //목록 보기
-		return mapper.getBoardList();
+	public List<BoardVO> getBoardList(BoardVO vo) { //목록 보기
+		return mapper.getBoardList(vo);
 	}
 
 	@Override

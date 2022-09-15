@@ -67,6 +67,12 @@ public class MemberController {
 		service.update(member);
 		return "redirect:/member/memberList";
 	}
+	
+	//Å×½ºÆ®
+	@GetMapping("/fn")
+	public String myFunction() {
+		return "/member/functions";
+	}
 }
 
 

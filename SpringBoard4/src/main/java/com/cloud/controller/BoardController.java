@@ -20,7 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cloud.domain.BoardVO;
 import com.cloud.domain.Criteria;
 import com.cloud.domain.PageDTO;
+import com.cloud.domain.ReplyVO;
 import com.cloud.service.BoardService;
+import com.cloud.service.ReplyService;
 
 import jdk.internal.org.jline.utils.Log;
 import lombok.extern.log4j.Log4j;
@@ -33,12 +35,13 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 	
+	@Autowired
+	private ReplyService replyService;
+	
 	@GetMapping("/boardList")
 	public String getBoardList(Criteria cri, Model model) {//게시글 목록 요청
 		List<BoardVO> boardList = service.getListWithPage(cri);
 		PageDTO pageMaker = new PageDTO(cri, service.getTotalCount(cri));
-		
-		log.info(cri);
 		model.addAttribute("boardList", boardList); //model-"boardList"
 		model.addAttribute("pageMaker", pageMaker);
 		return "/board/boardList";

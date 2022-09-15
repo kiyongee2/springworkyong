@@ -29,7 +29,7 @@
 	
 	<select id="getMemberList" resultMap="memberMap">
 		<!-- SELECT * FROM tbl_member ORDER BY regdate -->
-		SELECT mem.userid,  userpw, username, enabled, regdate, updatedate, auth
+		SELECT mem.userid, userpw, username, enabled, regdate, updatedate, auth
 		FROM tbl_member mem 
 			LEFT OUTER JOIN tbl_member_auth auth 
 			on mem.userid = auth.userid

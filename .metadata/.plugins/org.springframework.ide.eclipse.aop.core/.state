@@ -5,7 +5,8 @@
 <aop-reference advice-type="AROUND" bean="1:BeansModel|2:SpringBoard2|3:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml|7:beans:beans:10|8:sampleController:10" bean-file="/SpringBoard2/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" bean-start-line="10" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/SpringBoard2/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" source="=SpringBoard2/C:\/Users\/kiyon\/.m2\/repository\/org\/springframework\/security\/spring-security-core\/5.2.7.RELEASE\/spring-security-core-5.2.7.RELEASE.jar=/maven.pomderived=/true=/=/org.eclipse.jst.component.dependency=/\/WEB-INF\/lib=/=/maven.pomderived=/true=/=/org.eclipse.jst.component.archivename=/spring-security-core-5.2.7.RELEASE.jar=/=/maven.groupId=/org.springframework.security=/=/maven.artifactId=/spring-security-core=/=/maven.version=/5.2.7.RELEASE=/=/maven.scope=/compile=/&lt;org.springframework.security.access.intercept.aopalliance(MethodSecurityInterceptor.class[MethodSecurityInterceptor~invoke~Lorg.aopalliance.intercept.MethodInvocation;" source-start-line="-1" target="=SpringBoard2/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.cloud.controller{SampleController.java[SampleController~doAdmin2" target-start-line="39"/>
 </aspect-definition>
 </aop-project>
-<aop-project name="SpringBoard4"/>
 <aop-project name="SpringBoard3"/>
+<aop-project name="SpringBoard4"/>
+<aop-project name="myweb"/>
 <aop-project name="SpringBoard"/>
 </aop-reference-model>

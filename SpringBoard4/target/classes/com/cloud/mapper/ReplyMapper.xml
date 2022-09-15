@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="read" resultType="com.cloud.domain.ReplyVO">
-		SELECT * FROM tbl_reply WHERE rno = #{rno}
+		SELECT * FROM tbl_reply WHERE bno = #{bno}
 	</select>
 	
 	<delete id="delete">

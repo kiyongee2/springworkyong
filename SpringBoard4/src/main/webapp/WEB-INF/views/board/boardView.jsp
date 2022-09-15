@@ -19,6 +19,7 @@
 				<h2>글 상세보기</h2>
 			</div>
 			<form action="/board/updateBoard" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<!-- 수정 시엔 기본키인 bno를 반드시 명시해 줌 -->
 				<input type="hidden" name="bno" value="${board.bno}">
 				<!-- 수정, 삭제시 페이지 번호 유지(없으면 1페이지 이동) 및 검색어 유지-->
@@ -68,6 +69,16 @@
 			<!-- 댓글 영역 -->
 			<div class="comment">
 			<h4>댓글</h4>
+<%-- 			<ol class="replyList">
+				<c:forEach items="${replyList}" var="list">
+					<li>
+						<p>작성자: <c:out value="${list.writer}" /><br>
+						   작성일자: <fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd hh:mm:ss"/>
+						</p>
+						<p><c:out value="${list.content}" /></p>
+					</li>
+				</c:forEach>
+			</ol> --%>
 			<ul>
 				<li>
 					<label>작성자</label>
@@ -105,20 +116,12 @@
 			actionForm.submit();
 		});
 		
-		//댓글 목록 보기
-		//getList();  
-		
 		//댓글 등록
 		$("#replyBtn").click(function(){
 			let bno = '<c:out value="${board.bno}"/>';
 			let replyer = $("#replyer").val();
 			let reply = $("#reply").val();
 			
-	 		if(replyer == '') {
-   				alert('로그인 이후 이용해주세요.');
-   				return;
-   			}
-	 		
 	 		if(reply == '') {
    				alert('내용을 입력하세요');
    				return;
@@ -126,7 +129,7 @@
 			
 			$.ajax({
    				type:'post',
-   				url: '<c:url value="/replies/insert" />',
+   				url: "/replies/insert",
    				data: JSON.stringify(
    					{
    						"bno": bno,
@@ -142,7 +145,7 @@
    						console.log('댓글 등록 완료');
    						$('#replyer').val(replyer);
    	   					$('#reply').val('');
-   	   					getList();
+   	   					getList();   //댓글 목록 호출
    					} else {
    						alert('로그인 이후 이용해주세요.');
    						console.log('댓글 등록 실패');
@@ -153,13 +156,14 @@
    				}
    			});// ajax 끝
    			
+   			//댓글 등록후 댓글 목록 갱신
    			function getList(){
    				let bno = '<c:out value="${board.bno}"/>';
    				let replyer = $("#replyer").val();
    				let reply = $("#reply").val();
    				
    				$.getJSON(
-   					"<c:url value='/replies/getList/' />" + bno,
+   					"/replies/getList/" + bno,
    					function(data) {
 						let list = data.list;
 						

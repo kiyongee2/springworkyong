@@ -19,6 +19,7 @@
 				<h2>글 상세보기</h2>
 			</div>
 			<form action="/board/updateBoard" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<!-- 수정 시엔 기본키인 bno를 반드시 명시해 줌 -->
 				<input type="hidden" name="bno" value="${board.bno}">
 				<!-- 수정, 삭제시 페이지 번호 유지(없으면 1페이지 이동) -->
@@ -63,6 +64,18 @@
 					</tr>
 				</table>
 			</form>
+			<!-- 댓글 영역 -->
+			<div class="comment">
+				<h4>댓글</h4>
+				<button id="replyBtn" class="replyBtn">댓글 쓰기</button>
+				<ul class="chat">
+					<li class="left" data-rno='12'>
+						<strong>user00</strong>
+						<small class="right">2022-09-15 05:03</small>
+						<p>Good job!</p>
+					</li>
+				</ul>
+			</div>
 		</section>
 		<form action="/board/boardList" method="get" id="actionForm">
 			<input type="hidden" name="bno" value="${board.bno}">
@@ -72,16 +85,60 @@
 		</form>
 	</div>
 	<jsp:include page="../footer.jsp" />
+<script type="text/javascript" src="/resources/js/reply.js"></script>
 <script type="text/javascript">
-
 	$(document).ready(function(){
 		
 		let actionForm = $("#actionForm");
 		//목록 버튼 클릭
 		$(".listBtn").click(function(e){
 			
-			e.preventDefault();
+			e.preventDefault();  //없으면 1페이지로 감
 			actionForm.submit();
+		});
+	});
+	
+	$(document).ready(function(){
+		
+		console.log(replyService);
+		
+		let bnoValue = '<c:out value="${board.bno}" />';
+		let replyUL = $(".chat");
+		
+		showList(1);  //파라미터가 없는 경우 1 page
+		
+		function showList(page){
+			replyService.getList({bno:bnoValue, page|| 1}, function(list){
+				let str="";
+				if(list == null || list.length == 0){
+					replyUL.html("");
+					return;
+				}
+				for(var i=0; len=list.length||0; i<len, i++){
+					str += "<li class='left' data-rno='"+list[i].rno+"'>";
+					str += "<strong>"+list[i].replyer+"</strong>";
+					str += "<small class='right'>"+list[i].replyDate+"</small>";
+					str += "<p>"+list[i].reply+"</p></li>"
+				}
+				
+				replyUL.html(str);
+				
+			}); //function end
+		}//showList end
+		
+		//댓글 등록
+		/*replyService.add(
+			{reply: "JS TEST", replyer: "tester", bno: bnoValue},
+			function(result){
+				alert("RESULT: " + result);
+			}
+		);*/
+		
+		//댓글 목록
+		replyService.getList({bno:bnoValue, page:1}, function(list){
+			for(var i=0; len=list.length||0; i<len, i++){
+				console.log(list[i]);
+			}
 		});
 	});
 </script>
