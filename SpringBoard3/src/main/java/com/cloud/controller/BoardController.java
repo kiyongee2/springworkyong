@@ -91,6 +91,8 @@ public class BoardController {
 		service.delete(vo);
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return "redirect:/board/boardList";
 	}
@@ -102,6 +104,8 @@ public class BoardController {
 		//URL 뒤에 원래의 페이지로 이동하기 위해 pageNum과 amount 값을 보내줌
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return "redirect:/board/boardList";
 	}

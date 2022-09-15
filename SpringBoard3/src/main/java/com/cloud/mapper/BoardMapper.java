@@ -1,6 +1,7 @@
 package com.cloud.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cloud.domain.BoardVO;
 import com.cloud.domain.Criteria;
@@ -22,4 +23,6 @@ public interface BoardMapper {
 	public void update(BoardVO vo); //글 수정
 	
 	public void updateCount(int bno); //조회수
+	
+	List<BoardVO> searchTest(Map<String, Map<String, String>> map);
 }

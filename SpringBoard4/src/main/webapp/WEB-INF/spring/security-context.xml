@@ -17,8 +17,8 @@
 	<!-- URI 경로 접근 -->
 	<security:http>
 		<!-- <security:intercept-url pattern="/sample/all" access="permitAll" /> -->
-		<security:intercept-url pattern="/board/boardView" access="hasRole('ROLE_USER')" />
-		<!-- <security:intercept-url pattern="/board/boardView" access="hasRole('ROLE_ADMIN')" /> -->
+		<security:intercept-url pattern="/board/insertBoard" access="isAuthenticated()" />
+		<security:intercept-url pattern="/board/boardView" access="isAuthenticated()" />
 		<security:intercept-url pattern="/member/memberList" access="hasRole('ROLE_ADMIN')" />
 	
 		<!-- <security:form-login/> -->
@@ -30,6 +30,11 @@
 		
 		<!-- <security:logout logout-url="/customLogout" invalidate-session="true" /> -->
 		
+		<security:remember-me
+			data-source-ref="dataSource" token-validity-seconds="604800" />
+		
+		<security:logout logout-url="/customLogout" 
+		  invalidate-session="true" delete-cookies="remember-me, JSESSION_ID" />
 		<security:access-denied-handler error-page="/accessError" />
 		<!-- 에러 처리 빈 참조 -->
 		<!-- <security:access-denied-handler ref="customAccessDenied" /> -->

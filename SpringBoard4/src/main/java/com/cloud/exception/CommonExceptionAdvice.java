@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j;
 @ControllerAdvice
 public class CommonExceptionAdvice {
 	
+	//코드 및 인증 오류 등 처리 - code 500 에러
 	@ExceptionHandler(Exception.class)
 	public String except(Exception ex, Model model) {
 		log.error("Exception......" + ex.getMessage());
@@ -22,6 +23,7 @@ public class CommonExceptionAdvice {
 		return "error_page";
 	}
 	
+	//페이지를 찾을 수 없음 - 404 에러
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String handle404(NoHandlerFoundException ex) {

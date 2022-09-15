@@ -18,6 +18,22 @@
 			<div class="title">
 				<h2>게시글 목록</h2>
 			</div>
+			<!-- 검색 폼 -->
+			<form action="/board/boardList" method="get" id="searchForm">
+				<select name="type">
+					<option value="T">제목</option>
+					<option value="C">내용</option>
+					<option value="W">작성자</option>
+					<option value="TC">제목 or 내용</option>
+					<option value="TW">제목 or 작성자</option>
+					<option value="TWC">제목 or 내용 or 작성자</option>
+				</select>
+				<input type="text" name="keyword" value="${pageMaker.cri.keyword}" 
+				       class="keyword">
+				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+				<button>Search</button>
+			</form>
 			<table class="tbl_list">
 				<tr>
 					<th>번호</th>
@@ -68,6 +84,8 @@
 			<form action="/board/boardList" method="get" id="actionForm">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+				<input type="hidden" name="type" value="${pageMaker.cri.type}">
+				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
 			</form>
 			
 			<!-- 글쓰기 버튼 -->
@@ -104,6 +122,16 @@
 			actionForm.append("<input type='hidden' name='bno' value='" + targetBno + "'>");
 			actionForm.attr("action", "/board/boardView");
 			actionForm.submit();
+		});
+		
+		//검색 폼 처리
+		let searchForm = $("#searchForm");
+		$("#searchForm button").on("click", function(e){
+			e.preventDefault();
+			console.log("click");
+			
+			searchForm.find("input[name='pageNum']").val(1);  //1페이지부터 검색
+			searchForm.submit();
 		});
 	}); //$(document) 끝
 </script>

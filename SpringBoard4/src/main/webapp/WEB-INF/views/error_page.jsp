@@ -12,7 +12,7 @@
 	<div id="container">
 		<div class="exception">
 			<h2>오류가 발생했습니다.</h2>
-			<p><c:out value="${exception.getMessage()}" /></p>
+			<h3><c:out value="${exception.getMessage()}" /></h3>
 		</div>
 	</div>
 </body>

@@ -1,6 +1,8 @@
 package com.spring.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,7 +50,7 @@ public class BoardMapperTests {
 			.forEach(board -> log.info(board));
 	}*/
 	
-	@Test
+	/*@Test
 	public void testPageDTO() {
 		Criteria cri = new Criteria();
 		cri.setPageNum(1);
@@ -56,5 +58,34 @@ public class BoardMapperTests {
 		
 		PageDTO page = new PageDTO(cri, 61);  //total=60
 		log.info(page);
+	}*/
+	
+	/*@Test
+	public void testSearch() {
+		Map<String, String> map = new HashMap<>();
+		map.put("T", "가을");
+		map.put("C", "추석");
+		map.put("W", "cloud");
+		
+		//중첩 Map 사용
+		Map<String, Map<String, String>> outer = new HashMap<>();
+		outer.put("map", map);  //xml쪽의 collection="map"
+		
+		List<BoardVO> list = mapper.searchTest(outer);
+		
+		log.info(list);
+	}*/
+	
+	@Test
+	public void testSearchPaging() {
+		//type과 keyword 입력
+		Criteria cri = new Criteria();
+		cri.setType("TC");
+		cri.setKeyword("추석");
+		
+		List<BoardVO> list = mapper.getListWithPage(cri);
+		
+		list.forEach(board -> log.info(board));
 	}
+	
 }
