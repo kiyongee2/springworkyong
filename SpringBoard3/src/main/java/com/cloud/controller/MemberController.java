@@ -68,8 +68,8 @@ public class MemberController {
 		return "redirect:/member/memberList";
 	}
 	
-	//테스트
-	@GetMapping("/fn")
+	//테스트 - jstl functions 태그
+	@GetMapping("/functions")
 	public String myFunction() {
 		return "/member/functions";
 	}
