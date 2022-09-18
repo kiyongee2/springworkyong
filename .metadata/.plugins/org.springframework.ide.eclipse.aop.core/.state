@@ -7,6 +7,7 @@
 </aop-project>
 <aop-project name="SpringBoard3"/>
 <aop-project name="SpringBoard4"/>
+<aop-project name="HiWeb"/>
 <aop-project name="myweb"/>
 <aop-project name="SpringBoard"/>
 </aop-reference-model>

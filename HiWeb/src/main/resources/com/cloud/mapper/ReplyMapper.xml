@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.mapper.ReplyMapper">
+	<insert id="register">
+		INSERT INTO tbl_reply (rno, bno, reply, replyer)
+		VALUES (seq_reply.nextval, #{bno}, #{reply}, #{replyer})
+	</insert>
+	
+	<select id="getReplyList" resultType="com.cloud.domain.ReplyVO">
+		SELECT * FROM tbl_reply WHERE bno = #{bno}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM tbl_reply WHERE rno = #{rno}
+	</delete>
+	
+	<update id="update">
+		UPDATE tbl_reply 
+		SET reply = #{reply}, updatedate = SYSDATE
+		WHERE rno = #{rno}
+	</update>
+	
+</mapper>

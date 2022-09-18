@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.mapper.BoardMapper">
+	<!-- 검색 모듈 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND">
+			<foreach collection="typeArr" item="type" separator="OR">
+				<if test="type=='T'.toString()">
+					title like '%'||#{keyword}||'%'
+				</if>
+				<if test="type=='C'.toString()">
+					content like '%'||#{keyword}||'%'
+				</if>
+				<if test="type=='W'.toString()">
+					writer like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!-- 목록 보기(페이징, 검색) -->
+	<select id="getListWithPage"
+		resultType="com.cloud.domain.BoardVO">
+		<![CDATA[
+		SELECT * FROM
+		    (SELECT /*+ INDEX_DESC(tbl_board pk_board) */ 
+		        ROWNUM rn, bno, title, content, writer, regdate, updatedate, cnt, replycnt 
+		    FROM tbl_board 
+		    WHERE
+    	]]>
+		<include refid="criteria"></include>
+		
+    	<![CDATA[
+		    ROWNUM <= #{pageNum} * #{amount})
+		WHERE rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+
+	<!-- 게시글 총 개수(검색) -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM tbl_board
+		WHERE
+		<include refid="criteria"></include>
+		bno > 0
+	</select>
+	
+	<!-- 게시글 검색(테스트) -->
+	<select id="searchTest" resultType="com.cloud.domain.BoardVO">
+		<![CDATA[
+			SELECT * FROM tbl_board
+			WHERE
+		]]>
+		<trim suffix="AND">
+			<foreach collection="map" index="key" item="val" 
+			         separator="OR" open="(" close=")">
+				<if test="key=='T'.toString()">
+					title like #{val}
+				</if>
+				<if test="key=='C'.toString()">
+					content like #{val}
+				</if>
+				<if test="key=='W'.toString()">
+					writer like #{val}
+				</if>
+			</foreach>
+		</trim>
+		<![CDATA[
+			ROWNUM < 10
+		]]>
+	</select>
+
+	<!-- 글쓰기 -->
+	<insert id="insert">
+		INSERT INTO tbl_board(bno, title, writer, content)
+		VALUES (seq.nextval, #{title}, #{writer}, #{content})
+	</insert>
+
+	<!-- 글 상세 보기 -->
+	<select id="getBoard" resultType="com.cloud.domain.BoardVO">
+		SELECT * FROM tbl_board WHERE
+		bno = #{bno}
+	</select>
+
+	<!-- 글 삭제 -->
+	<delete id="delete">
+		DELETE FROM tbl_board WHERE bno = #{bno}
+	</delete>
+
+	<!-- 글 수정 -->
+	<update id="update">
+		UPDATE tbl_board
+		SET
+		title = #{title},
+		writer=#{writer},
+		content=#{content},
+		updatedate = sysdate
+		WHERE bno = #{bno}
+	</update>
+
+	<!-- 조회수 -->
+	<update id="updateCount" parameterType="int">
+		UPDATE tbl_board
+		SET cnt = cnt + 1
+		WHERE bno = #{bno}
+	</update>
+	
+	<!-- 댓글 개수 -->
+	<update id="updateReplyCnt">
+		UPDATE tbl_board 
+		SET replycnt = replycnt + #{amount}
+		WHERE bno = #{bno}
+	</update>
+</mapper>
+
+
+
+
+
+
