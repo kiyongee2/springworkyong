@@ -45,12 +45,19 @@
 						<a class="move" href='<c:out value="${board.bno}"/>'>
 							<c:out value="${board.title}" />
 							<!-- 댓글 개수 -->
-							<b>[<c:out value="${board.replyCnt}" />]</b>
+							<c:if test="${board.replyCnt >= 1}">
+							<span class="cnt">[<c:out value="${board.replyCnt}" />]</span>
+							</c:if>
 						</a>
 					</td>
 					<td><c:out value="${board.writer}" /></td>
-					<td><fmt:formatDate value="${board.regDate}" 
-					            pattern="yyyy-MM-dd hh:mm:ss"/></td>
+					<td>
+						<!-- 날짜 수정 -->
+						<%-- <fmt:formatDate value="${board.regDate}" 
+					            pattern="yyyy-MM-dd hh:mm:ss"/> --%>
+						<fmt:formatDate value="${board.updateDate}" 
+					            pattern="yyyy-MM-dd HH:mm:ss"/>
+					</td>
 					<td><c:out value="${board.cnt}" /></td>
 				</tr>
 				</c:forEach>

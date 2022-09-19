@@ -15,33 +15,41 @@ import com.cloud.mapper.ReplyMapper;
 public class ReplyServiceImpl implements ReplyService{
 	
 	@Autowired
-	private ReplyMapper mapper;
+	private ReplyMapper replyMapper;
 	
 	@Autowired
 	private BoardMapper boardMapper;
 	
+	//댓글 등록
 	@Transactional  //boardMapper와 연동함
 	@Override
-	public int register(ReplyVO vo) {
+	public void register(ReplyVO vo) {
 		//댓글 개수
 		boardMapper.updateReplyCnt(vo.getBno(), 1);  //1 - amount(개수)
-		return mapper.register(vo);
+		replyMapper.register(vo);
 	}
 	
+	//댓글 목록
 	@Override
 	public List<ReplyVO> getReplyList(int bno) {
-		return mapper.getReplyList(bno);
+		return replyMapper.getReplyList(bno);
+	}
+	
+	//특정 댓글 조회
+	@Override
+	public ReplyVO getReply(int rno) {
+		return replyMapper.getReply(rno);
 	}
 
-	/*@Override
-	public int delete(int rno) {
-		return mapper.delete(rno);
-	}*/
+	//댓글 삭제
+	@Override
+	public void delete(ReplyVO vo) {
+		replyMapper.delete(vo);
+	}
 
-	/*@Override
-	public int modify(ReplyVO vo) {
-		return mapper.update(vo);
-	}*/
-
-	
+	//댓글 수정
+	@Override
+	public void update(ReplyVO vo) {
+		replyMapper.update(vo);
+	}
 }
